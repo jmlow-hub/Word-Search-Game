@@ -45,10 +45,10 @@ main {
     }
 
     &__grid {
-      width: 60%;
+      width: 80%;
       height: 400px;
       display: grid;
-      grid-template-columns: auto auto auto auto auto;
+      grid-template-columns: (10, 1fr);
     }
 
 

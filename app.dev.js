@@ -36,6 +36,8 @@ var rawWordsArr = fetch("https://api.datamuse.com/words?ml=software+development"
 
   for (var _i2 = 0; _i2 < 100; _i2++) {
     var gridSquare = document.createElement("div");
+    gridSquare.setAttribute("id", _i2);
+    gridSquare.classList.add("game__main__grid__grid-square");
     gridContainer.appendChild(gridSquare);
   }
 })["catch"](function (err) {
