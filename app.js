@@ -2,6 +2,7 @@
 const newGridBtn = document.querySelector(".game__intro__new-grid-btn");
 const clearButton = document.querySelector(".game__end__clear-btn");
 const wordsToFind = document.querySelector("ul");
+const gridContainer = document.querySelector(".game__main__grid");
 
 
 //array to hold basic word list
@@ -30,14 +31,21 @@ const wordList = [];
   // console.log(wordList);
 
    //create list of words to find in relevant container
- 
- for(let i = 0; i < 6; i++) {
-  const newListItem = document.createElement("li");
-  const listItemContent = wordList[i];
-  newListItem.innerHTML = listItemContent;
-  wordsToFind.appendChild(newListItem);
- }
+   for(let i = 0; i < 6; i++) {
+    const newListItem = document.createElement("li");
+    const listItemContent = wordList[i];
+    newListItem.innerHTML = listItemContent;
+    wordsToFind.appendChild(newListItem);
+   }
+
+   //create 10 x 10 grid in relevant container
+   for(let i = 0; i < 100; i++) {
+    const gridSquare = document.createElement("div");
+    gridContainer.appendChild(gridSquare);
+   }
    
+  
+
 
 
 
@@ -57,7 +65,6 @@ const wordList = [];
 
 
 
-//create 10 x 10 grid in relevant container
 //place words from array in grid
 //fill empty spaces with random letters
 //select word - change color - first letter last letter?

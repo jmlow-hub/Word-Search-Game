@@ -3,7 +3,8 @@
 //get html elements
 var newGridBtn = document.querySelector(".game__intro__new-grid-btn");
 var clearButton = document.querySelector(".game__end__clear-btn");
-var wordsToFind = document.querySelector("ul"); //array to hold basic word list
+var wordsToFind = document.querySelector("ul");
+var gridContainer = document.querySelector(".game__main__grid"); //array to hold basic word list
 
 var wordList = []; //fetch list of words from API
 
@@ -30,11 +31,16 @@ var rawWordsArr = fetch("https://api.datamuse.com/words?ml=software+development"
     var listItemContent = wordList[_i];
     newListItem.innerHTML = listItemContent;
     wordsToFind.appendChild(newListItem);
+  } //create 10 x 10 grid in relevant container
+
+
+  for (var _i2 = 0; _i2 < 100; _i2++) {
+    var gridSquare = document.createElement("div");
+    gridContainer.appendChild(gridSquare);
   }
 })["catch"](function (err) {
   alert("You've rendered us speechless, we're all out of words");
-}); //create 10 x 10 grid in relevant container
-//place words from array in grid
+}); //place words from array in grid
 //fill empty spaces with random letters
 //select word - change color - first letter last letter?
 //word is removed or indicated as clicked on list somehow
