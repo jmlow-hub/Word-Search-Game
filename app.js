@@ -38,14 +38,13 @@ const wordList = [];
     wordsToFind.appendChild(newListItem);
    }
 
-   //create 10 x 10 grid in relevant container
+   //create 10 x 10 grid in relevant container - with class and id
    for(let i = 0; i < 100; i++) {
     const gridSquare = document.createElement("div");
     gridSquare.setAttribute("id", i);
     gridSquare.classList.add("game__main__grid__grid-square")
+    gridSquare.innerHTML = "M";
     gridContainer.appendChild(gridSquare);
-
-
    }
    
   
