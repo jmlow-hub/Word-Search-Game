@@ -38,8 +38,8 @@ fetch("https://api.datamuse.com/words?ml=software+development").then(function (r
   for (var _i2 = 0; _i2 < 100; _i2++) {
     var gridSquares = document.createElement("div");
     gridSquares.setAttribute("id", _i2);
-    gridSquares.classList.add("game__main__grid__grid-square");
-    gridSquares.innerHTML = "M";
+    gridSquares.classList.add("game__main__grid__grid-square"); //gridSquares.innerHTML = "M";
+
     gridContainer.appendChild(gridSquares);
   } //go through each word in list
   //create separate array for each word
@@ -56,8 +56,8 @@ fetch("https://api.datamuse.com/words?ml=software+development").then(function (r
 
       for (var j = 0; j < tempWord.length; j++) {
         var letter = tempWord.split('')[j];
-        var square = document.getElementById(squareIndex);
-        square.innerHTML = letter; // console.log(squareIndex);
+        var square = document.getElementById(squareIndex + j);
+        square.innerHTML += letter; // console.log(squareIndex);
         // console.log(wordList[i].length);
         //console.log(wordList[i]);
 

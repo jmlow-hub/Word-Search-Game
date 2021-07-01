@@ -46,7 +46,7 @@ const wordList = [];
     const gridSquares = document.createElement("div");
     gridSquares.setAttribute("id", i);
     gridSquares.classList.add("game__main__grid__grid-square")
-    gridSquares.innerHTML = "M";
+    //gridSquares.innerHTML = "M";
     gridContainer.appendChild(gridSquares);
    }
    
@@ -68,8 +68,8 @@ const wordList = [];
           let tempWord = arr[i];
              for(let j = 0; j < tempWord.length; j++) {
                let letter = tempWord.split('')[j];
-               const square = document.getElementById(squareIndex);
-               square.innerHTML = letter;
+               const square = document.getElementById(squareIndex + j);
+               square.innerHTML += letter;
 
             
                    
