@@ -3,6 +3,9 @@ const newGridBtn = document.querySelector(".game__intro__new-grid-btn");
 const clearButton = document.querySelector(".game__end__clear-btn");
 const wordsToFind = document.querySelector("ul");
 const gridContainer = document.querySelector(".game__main__grid");
+const gridStyle = document.styleSheets[1];
+
+
 
 
 //array to hold basic word list
@@ -47,32 +50,69 @@ const wordList = [];
     gridContainer.appendChild(gridSquares);
    }
    
+   //go through each word in list
+   //create separate array for each word
+   //place first letter of word randomly 
+   //each following letter in horizontal or vertical direction
+
+
+
+
+
  //place words from wordListarray in grid
    const placeWords = (arr) => {
        
      //select random square on grid and add word to square
      for(let i = 0; i < wordList.length; i++) {
-     const squareIndex = Math.floor(Math.random() * 99);
-     const square = document.getElementById(squareIndex);
-     square.innerHTML = wordList[i]; 
-
-   }
-
-
-   }
+          const squareIndex = Math.floor(Math.random() * 99);
+          for(let j = 1; j < wordList[i].length +1; j++) {
+          let tempWord = wordList[i].split('');
+          
 
 
     
-   
-   
-   placeWords(wordList);
-  
-   
-})
 
-.catch(err => {
+            // console.log(squareIndex);
+            // console.log(wordList[i].length);
+            //console.log(wordList[i]);
+            console.log(tempWord);
+           
+          }
+         
+
+          // const square = document.getElementById(squareIndex);
+          // square.innerHTML = wordList[i].split('')[0]; 
+          //const squareID = "#" + square.getAttribute("id");
+     //gridStyle.insertRule(`${squareID} {color: red;}`, gridStyle.cssRules.length);
+        
+
+    }
+   
+      
+    
+   }
+   placeWords(wordList);
+
+  
+ 
+   
+   
+
+   })
+
+//set grid placement spans
+// const wordStyles = (sheet) => {
+//   sheet.insertRule("button {color: red;}", sheet.cssRules.length);
+
+// }
+
+    
+     
+ 
+
+.catch(err =>  {
   alert("You've rendered us speechless, we're all out of words")
-})
+});
 
 
  

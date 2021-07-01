@@ -4,7 +4,8 @@
 var newGridBtn = document.querySelector(".game__intro__new-grid-btn");
 var clearButton = document.querySelector(".game__end__clear-btn");
 var wordsToFind = document.querySelector("ul");
-var gridContainer = document.querySelector(".game__main__grid"); //array to hold basic word list
+var gridContainer = document.querySelector(".game__main__grid");
+var gridStyle = document.styleSheets[1]; //array to hold basic word list
 
 var wordList = []; //fetch list of words from API
 
@@ -40,20 +41,39 @@ fetch("https://api.datamuse.com/words?ml=software+development").then(function (r
     gridSquares.classList.add("game__main__grid__grid-square");
     gridSquares.innerHTML = "M";
     gridContainer.appendChild(gridSquares);
-  } //place words from wordListarray in grid
+  } //go through each word in list
+  //create separate array for each word
+  //place first letter of word randomly 
+  //each following letter in horizontal or vertical direction
+  //place words from wordListarray in grid
 
 
   var placeWords = function placeWords(arr) {
     //select random square on grid and add word to square
     for (var _i3 = 0; _i3 < wordList.length; _i3++) {
       var squareIndex = Math.floor(Math.random() * 99);
-      var square = document.getElementById(squareIndex);
-      square.innerHTML = wordList[_i3];
+
+      for (var j = 1; j < wordList[_i3].length + 1; j++) {
+        var tempWord = wordList[_i3].split(''); // console.log(squareIndex);
+        // console.log(wordList[i].length);
+        //console.log(wordList[i]);
+
+
+        console.log(tempWord);
+      } // const square = document.getElementById(squareIndex);
+      // square.innerHTML = wordList[i].split('')[0]; 
+      //const squareID = "#" + square.getAttribute("id");
+      //gridStyle.insertRule(`${squareID} {color: red;}`, gridStyle.cssRules.length);
+
     }
   };
 
   placeWords(wordList);
-})["catch"](function (err) {
+}) //set grid placement spans
+// const wordStyles = (sheet) => {
+//   sheet.insertRule("button {color: red;}", sheet.cssRules.length);
+// }
+["catch"](function (err) {
   alert("You've rendered us speechless, we're all out of words");
 }); //fill empty spaces with random letters
 //select word - change color - first letter last letter?
