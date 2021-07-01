@@ -50,16 +50,18 @@ fetch("https://api.datamuse.com/words?ml=software+development").then(function (r
 
   var placeWords = function placeWords(arr) {
     //select random square on grid and add word to square
-    for (var _i3 = 0; _i3 < wordList.length; _i3++) {
+    for (var _i3 = 0; _i3 < arr.length; _i3++) {
       var squareIndex = Math.floor(Math.random() * 99);
+      var tempWord = arr[_i3];
 
-      for (var j = 1; j < wordList[_i3].length + 1; j++) {
-        var tempWord = wordList[_i3].split(''); // console.log(squareIndex);
+      for (var j = 0; j < tempWord.length; j++) {
+        var letter = tempWord.split('')[j];
+        var square = document.getElementById(squareIndex);
+        square.innerHTML = letter; // console.log(squareIndex);
         // console.log(wordList[i].length);
         //console.log(wordList[i]);
 
-
-        console.log(tempWord);
+        console.log(letter);
       } // const square = document.getElementById(squareIndex);
       // square.innerHTML = wordList[i].split('')[0]; 
       //const squareID = "#" + square.getAttribute("id");

@@ -63,10 +63,19 @@ const wordList = [];
    const placeWords = (arr) => {
        
      //select random square on grid and add word to square
-     for(let i = 0; i < wordList.length; i++) {
+     for(let i = 0; i < arr.length; i++) {
           const squareIndex = Math.floor(Math.random() * 99);
-          for(let j = 1; j < wordList[i].length +1; j++) {
-          let tempWord = wordList[i].split('');
+          let tempWord = arr[i];
+             for(let j = 0; j < tempWord.length; j++) {
+               let letter = tempWord.split('')[j];
+               const square = document.getElementById(squareIndex);
+               square.innerHTML = letter;
+
+            
+                   
+
+            
+          
           
 
 
@@ -75,7 +84,7 @@ const wordList = [];
             // console.log(squareIndex);
             // console.log(wordList[i].length);
             //console.log(wordList[i]);
-            console.log(tempWord);
+            console.log(letter);
            
           }
          
