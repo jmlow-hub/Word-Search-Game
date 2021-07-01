@@ -9,7 +9,7 @@ const gridContainer = document.querySelector(".game__main__grid");
 const wordList = [];
 
 //fetch list of words from API
- const rawWordsArr = fetch("https://api.datamuse.com/words?ml=software+development").then(res => {
+  fetch("https://api.datamuse.com/words?ml=software+development").then(res => {
   return res.json();
 })
 .then(data => {
@@ -40,26 +40,49 @@ const wordList = [];
 
    //create 10 x 10 grid in relevant container - with class and id
    for(let i = 0; i < 100; i++) {
-    const gridSquare = document.createElement("div");
-    gridSquare.setAttribute("id", i);
-    gridSquare.classList.add("game__main__grid__grid-square")
-    gridSquare.innerHTML = "M";
-    gridContainer.appendChild(gridSquare);
+    const gridSquares = document.createElement("div");
+    gridSquares.setAttribute("id", i);
+    gridSquares.classList.add("game__main__grid__grid-square")
+    gridSquares.innerHTML = "M";
+    gridContainer.appendChild(gridSquares);
    }
    
-  
+ //place words from wordListarray in grid
+   const placeWords = (arr) => {
+     //split array into individual words
+     const word1 = arr[0];
+     const word2 = arr[1];
+     const word3 = arr[3];
+     const word4 = arr[4];
+     const word5 = arr[5];
+     const word6 = arr[6];
+
+     //select random square on grid
+     const squareIndex = Math.floor(Math.random() * 99);
+     const square = document.getElementById(squareIndex);
+     
+     console.log(square)
 
 
 
+
+   }
 
 
     
+   
+   
+   placeWords(wordList);
+  
+   
 })
+
 .catch(err => {
   alert("You've rendered us speechless, we're all out of words")
 })
 
 
+ 
 
 
 
@@ -68,7 +91,16 @@ const wordList = [];
 
 
 
-//place words from array in grid
 //fill empty spaces with random letters
 //select word - change color - first letter last letter?
 //word is removed or indicated as clicked on list somehow
+
+
+
+  //create individual letters from the array to add to the grid squares 
+  //  for(let i = 0; i < 6; i++) {
+        
+  //    const letterArr = Array.from(wordList[i]);
+
+    
+  // }
