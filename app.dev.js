@@ -44,17 +44,12 @@ fetch("https://api.datamuse.com/words?ml=software+development").then(function (r
 
 
   var placeWords = function placeWords(arr) {
-    //split array into individual words
-    var word1 = arr[0];
-    var word2 = arr[1];
-    var word3 = arr[3];
-    var word4 = arr[4];
-    var word5 = arr[5];
-    var word6 = arr[6]; //select random square on grid
-
-    var squareIndex = Math.floor(Math.random() * 99);
-    var square = document.getElementById(squareIndex);
-    console.log(square);
+    //select random square on grid and add word to square
+    for (var _i3 = 0; _i3 < wordList.length; _i3++) {
+      var squareIndex = Math.floor(Math.random() * 99);
+      var square = document.getElementById(squareIndex);
+      square.innerHTML = wordList[_i3];
+    }
   };
 
   placeWords(wordList);

@@ -49,21 +49,14 @@ const wordList = [];
    
  //place words from wordListarray in grid
    const placeWords = (arr) => {
-     //split array into individual words
-     const word1 = arr[0];
-     const word2 = arr[1];
-     const word3 = arr[3];
-     const word4 = arr[4];
-     const word5 = arr[5];
-     const word6 = arr[6];
-
-     //select random square on grid
+       
+     //select random square on grid and add word to square
+     for(let i = 0; i < wordList.length; i++) {
      const squareIndex = Math.floor(Math.random() * 99);
      const square = document.getElementById(squareIndex);
-     
-     console.log(square)
+     square.innerHTML = wordList[i]; 
 
-
+   }
 
 
    }
