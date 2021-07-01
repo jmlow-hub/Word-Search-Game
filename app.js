@@ -59,64 +59,53 @@ const wordList = [];
 
 
 
- //place words from wordListarray in grid
-   const placeWords = (arr) => {
+ //place words from wordList array horizontally in grid
+   //const placeHorizontal = (arr) => {
        
      //select random square on grid and add word to square
-     for(let i = 0; i < arr.length; i++) {
-          const squareIndex = Math.floor(Math.random() * 99);
-          let tempWord = arr[i];
-             for(let j = 0; j < tempWord.length; j++) {
-               let letter = tempWord.split('')[j];
-               const square = document.getElementById(squareIndex + j);
-               square.innerHTML += letter;
-
-            
-                   
-
-            
+  //    for(let i = 0; i < arr.length; i++) {
+  //         const squareIndex = Math.floor(Math.random() * 99);
+  //         let tempWord = arr[i];
+  //            for(let j = 0; j < tempWord.length; j++) {
+  //              let letter = tempWord.split('')[j];
+  //              const square = document.getElementById(squareIndex + j);
+  //              square.innerHTML += letter;        
           
-          
-
-
-    
-
-            // console.log(squareIndex);
-            // console.log(wordList[i].length);
-            //console.log(wordList[i]);
-            console.log(letter);
-           
-          }
-         
-
-          // const square = document.getElementById(squareIndex);
-          // square.innerHTML = wordList[i].split('')[0]; 
-          //const squareID = "#" + square.getAttribute("id");
-     //gridStyle.insertRule(`${squareID} {color: red;}`, gridStyle.cssRules.length);
-        
-
-    }
+  //               console.log(letter);
+  //             }
+  //       }  
+  //  }
+  //  placeHorizontal(wordList);   
    
-      
-    
-   }
-   placeWords(wordList);
+   //})
 
   
- 
-   
-   
+      //place words from wordList array vertically in grid
+   const placeVertical = (arr) => {
+       
+    //select random square on grid and add word to square
+    for(let i = 0; i < arr.length; i++) {
+         const squareIndex = Math.floor(Math.random() * 40);
+         console.log(squareIndex)
+         let tempWord = arr[i];
+            for(let j = 0; j < tempWord.length; j++) {
+              let letter = tempWord.split('')[j];
+              const square = document.getElementById(squareIndex + (j*10));
+              square.innerHTML += letter;        
+         
+               //console.log(letter);
+               console.log(square)
+          
+         }
 
-   })
+       }  
+  }
+  placeVertical(wordList);   
+  
 
-//set grid placement spans
-// const wordStyles = (sheet) => {
-//   sheet.insertRule("button {color: red;}", sheet.cssRules.length);
 
-// }
+  })
 
-    
-     
  
 
 .catch(err =>  {

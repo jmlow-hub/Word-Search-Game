@@ -45,37 +45,44 @@ fetch("https://api.datamuse.com/words?ml=software+development").then(function (r
   //create separate array for each word
   //place first letter of word randomly 
   //each following letter in horizontal or vertical direction
-  //place words from wordListarray in grid
+  //place words from wordList array horizontally in grid
+  //const placeHorizontal = (arr) => {
+  //select random square on grid and add word to square
+  //    for(let i = 0; i < arr.length; i++) {
+  //         const squareIndex = Math.floor(Math.random() * 99);
+  //         let tempWord = arr[i];
+  //            for(let j = 0; j < tempWord.length; j++) {
+  //              let letter = tempWord.split('')[j];
+  //              const square = document.getElementById(squareIndex + j);
+  //              square.innerHTML += letter;        
+  //               console.log(letter);
+  //             }
+  //       }  
+  //  }
+  //  placeHorizontal(wordList);   
+  //})
+  //place words from wordList array vertically in grid
 
 
-  var placeWords = function placeWords(arr) {
+  var placeVertical = function placeVertical(arr) {
     //select random square on grid and add word to square
     for (var _i3 = 0; _i3 < arr.length; _i3++) {
-      var squareIndex = Math.floor(Math.random() * 99);
+      var squareIndex = Math.floor(Math.random() * 40);
+      console.log(squareIndex);
       var tempWord = arr[_i3];
 
       for (var j = 0; j < tempWord.length; j++) {
         var letter = tempWord.split('')[j];
-        var square = document.getElementById(squareIndex + j);
-        square.innerHTML += letter; // console.log(squareIndex);
-        // console.log(wordList[i].length);
-        //console.log(wordList[i]);
+        var square = document.getElementById(squareIndex + j * 10);
+        square.innerHTML += letter; //console.log(letter);
 
-        console.log(letter);
-      } // const square = document.getElementById(squareIndex);
-      // square.innerHTML = wordList[i].split('')[0]; 
-      //const squareID = "#" + square.getAttribute("id");
-      //gridStyle.insertRule(`${squareID} {color: red;}`, gridStyle.cssRules.length);
-
+        console.log(square);
+      }
     }
   };
 
-  placeWords(wordList);
-}) //set grid placement spans
-// const wordStyles = (sheet) => {
-//   sheet.insertRule("button {color: red;}", sheet.cssRules.length);
-// }
-["catch"](function (err) {
+  placeVertical(wordList);
+})["catch"](function (err) {
   alert("You've rendered us speechless, we're all out of words");
 }); //fill empty spaces with random letters
 //select word - change color - first letter last letter?
