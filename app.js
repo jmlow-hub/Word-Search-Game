@@ -123,19 +123,29 @@ do{
 const handleSquare = gridContainer.addEventListener("click", (e) => {
   e.preventDefault();
   let content = e.target.innerHTML;
-
+//value is pushed to array
   if(e.target && e.target.classList == "game__main__grid__grid-square") {
     selectedWordArr.push(content);
-    console.log(selectedWordArr);
-     
+    console.log(selectedWordArr);  
   }
 })
   
   
+const handleSubmit = submitBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  
+  //compare selectedword array with wordList 
+  let selectedWord = selectedWordArr.join("");
+  console.log(selectedWord)
+  if(wordsToFind.li.innerHTML == selectedWord) {
+    console.log(true)
+    
+  }
+  //clear array for next selection
+  selectedWordArr.length = 0;
+})
 
-//value is pushed to array
-//compare value to value in wordlist
-//if matches, tick/highlight on list somehow?
+
 
 
 

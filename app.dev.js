@@ -114,16 +114,26 @@ var handleNewGrid = newGridBtn.addEventListener("click", function (e) {
 
 var handleSquare = gridContainer.addEventListener("click", function (e) {
   e.preventDefault();
-  var content = e.target.innerHTML;
+  var content = e.target.innerHTML; //value is pushed to array
 
   if (e.target && e.target.classList == "game__main__grid__grid-square") {
     selectedWordArr.push(content);
     console.log(selectedWordArr);
   }
-}); //value is pushed to array
-//compare value to value in wordlist
-//if matches, tick/highlight on list somehow?
-//clear list and grid
+});
+var handleSubmit = submitBtn.addEventListener("click", function (e) {
+  e.preventDefault(); //compare selectedword array with wordList 
+
+  var selectedWord = selectedWordArr.join("");
+  console.log(selectedWord);
+
+  if (wordsToFind.li.innerHTML == selectedWord) {
+    console.log(true);
+  } //clear array for next selection
+
+
+  selectedWordArr.length = 0;
+}); //clear list and grid
 
 var handleClearGrid = clearButton.addEventListener("click", function (e) {
   e.preventDefault();
