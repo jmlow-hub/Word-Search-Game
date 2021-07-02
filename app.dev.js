@@ -5,8 +5,7 @@ var newGridBtn = document.querySelector(".game__intro__new-grid-btn");
 var clearButton = document.querySelector(".game__end__clear-btn");
 var wordsToFind = document.querySelector("ul");
 var gridContainer = document.querySelector(".game__main__grid");
-var gridStyle = document.styleSheets[1];
-console.log(clearButton); //arrays
+var submitBtn = document.querySelector(".game__end__submit-btn"); //arrays
 //array to hold basic word list
 
 var wordList = [];
@@ -51,32 +50,7 @@ var createGrid = function createGrid() {
     gridSquares.classList.add("game__main__grid__grid-square");
     gridContainer.appendChild(gridSquares);
   }
-}; //place words from wordList array horizontally in grid
-//  const placeHorizontal = (arr) => {
-//     //Select random square on grid and add word to square
-//      for(let i = 0; i < arr.length; i++) {
-//           const squareIndex = Math.floor(Math.random() * 99);
-//           let tempWord = arr[i];
-//              for(let j = 0; j < tempWord.length; j++) {
-//                let letter = tempWord.split('')[j];
-//                const square = document.getElementById(squareIndex + j);
-//                square.innerHTML += letter;        
-//               }
-//         }  
-//    }
-//  // place words from wordList array vertically in grid
-//  const placeVertical = (arr) => {  
-//   for(let i = 0; i < arr.length; i++) {
-//     const squareIndex = Math.floor(Math.random() * 50);
-//     let tempWord = arr[i];
-//         for(let j = 0; j < tempWord.length; j++) {
-//           let letter = tempWord.split('')[j];
-//           const square = document.getElementById(squareIndex + (j*10));
-//           square.innerHTML += letter;
-//         }
-//   }
-// }
-//randomly select whether to place words horizontally or vertically
+}; //randomly select whether to place words horizontally or vertically
 
 
 var wordPlacement = function wordPlacement(arr) {
@@ -90,11 +64,10 @@ var wordPlacement = function wordPlacement(arr) {
       if (squareIndex % 2 === 0) {
         var square = document.getElementById(squareIndex + j);
         square.innerHTML += letter;
-      } else {
+      } else if (squareIndex % 2 != 0 && squareIndex <= 50) {
         var _square = document.getElementById(squareIndex + j * 10);
 
         _square.innerHTML += letter;
-        console.log(_square.innerHTML);
       }
     }
   }

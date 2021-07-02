@@ -3,8 +3,9 @@ const newGridBtn = document.querySelector(".game__intro__new-grid-btn");
 const clearButton = document.querySelector(".game__end__clear-btn");
 const wordsToFind = document.querySelector("ul");
 const gridContainer = document.querySelector(".game__main__grid");
-const gridStyle = document.styleSheets[1];
-console.log(clearButton)
+const submitBtn = document.querySelector(".game__end__submit-btn");
+
+
 
 //arrays
 //array to hold basic word list
@@ -52,60 +53,23 @@ const createGrid = () => {
   }
 
 
- //place words from wordList array horizontally in grid
-//  const placeHorizontal = (arr) => {
-//     //Select random square on grid and add word to square
-//      for(let i = 0; i < arr.length; i++) {
-//           const squareIndex = Math.floor(Math.random() * 99);
-//           let tempWord = arr[i];
-//              for(let j = 0; j < tempWord.length; j++) {
-//                let letter = tempWord.split('')[j];
-//                const square = document.getElementById(squareIndex + j);
-//                square.innerHTML += letter;        
-                      
-//               }
-//         }  
-//    }
-
- 
-//  // place words from wordList array vertically in grid
-//  const placeVertical = (arr) => {  
-//   for(let i = 0; i < arr.length; i++) {
-//     const squareIndex = Math.floor(Math.random() * 50);
-//     let tempWord = arr[i];
-//         for(let j = 0; j < tempWord.length; j++) {
-//           let letter = tempWord.split('')[j];
-//           const square = document.getElementById(squareIndex + (j*10));
-//           square.innerHTML += letter;
-//         }
-//   }
-// }
-
 //randomly select whether to place words horizontally or vertically
 const wordPlacement = (arr) => {
   for(let i = 0; i < arr.length; i++) {
     const squareIndex = Math.floor(Math.random() * 50);
     let lettersArr = arr[i];
-     
-        for(let j = 0; j < lettersArr.length; j++) {
-          let letter = lettersArr[j];
-                         
-           
+      for(let j = 0; j < lettersArr.length; j++) {
+          let letter = lettersArr[j];                     
            if(squareIndex % 2 === 0) {
            const square = document.getElementById(squareIndex + j);
-           square.innerHTML += letter;
-         } else {
+           square.innerHTML += letter;           
+         } else if(squareIndex % 2 != 0 && squareIndex <=50) {
            const square = document.getElementById(squareIndex + (j * 10));
-           square.innerHTML += letter;
-           console.log(square.innerHTML)
+           square.innerHTML += letter;           
         }    
         }
   }
 }
-
-
-
-
 
 //fill empty spaces:
 const fillSpace = () => {
@@ -118,10 +82,6 @@ const fillSpace = () => {
   }
 }
  
-
-
-
-
 
 //fetch list of words from API on button click
 const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
