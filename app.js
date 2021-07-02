@@ -53,43 +53,58 @@ const createGrid = () => {
 
 
  //place words from wordList array horizontally in grid
- const placeHorizontal = (arr) => {
-    //Select random square on grid and add word to square
-     for(let i = 0; i < arr.length; i++) {
-          const squareIndex = Math.floor(Math.random() * 99);
-          let tempWord = arr[i];
-             for(let j = 0; j < tempWord.length; j++) {
-               let letter = tempWord.split('')[j];
-               const square = document.getElementById(squareIndex + j);
-               square.innerHTML += letter;        
+//  const placeHorizontal = (arr) => {
+//     //Select random square on grid and add word to square
+//      for(let i = 0; i < arr.length; i++) {
+//           const squareIndex = Math.floor(Math.random() * 99);
+//           let tempWord = arr[i];
+//              for(let j = 0; j < tempWord.length; j++) {
+//                let letter = tempWord.split('')[j];
+//                const square = document.getElementById(squareIndex + j);
+//                square.innerHTML += letter;        
                       
-              }
-        }  
-   }
+//               }
+//         }  
+//    }
 
+ 
+//  // place words from wordList array vertically in grid
+//  const placeVertical = (arr) => {  
+//   for(let i = 0; i < arr.length; i++) {
+//     const squareIndex = Math.floor(Math.random() * 50);
+//     let tempWord = arr[i];
+//         for(let j = 0; j < tempWord.length; j++) {
+//           let letter = tempWord.split('')[j];
+//           const square = document.getElementById(squareIndex + (j*10));
+//           square.innerHTML += letter;
+//         }
+//   }
+// }
 
- // place words from wordList array vertically in grid
- const placeVertical = (arr) => {  
+//randomly select whether to place words horizontally or vertically
+const wordPlacement = (arr) => {
   for(let i = 0; i < arr.length; i++) {
     const squareIndex = Math.floor(Math.random() * 50);
-    let tempWord = arr[i];
-        for(let j = 0; j < tempWord.length; j++) {
-          let letter = tempWord.split('')[j];
-          const square = document.getElementById(squareIndex + (j*10));
-          square.innerHTML += letter;
+    let lettersArr = arr[i];
+     
+        for(let j = 0; j < lettersArr.length; j++) {
+          let letter = lettersArr[j];
+                         
+           
+           if(squareIndex % 2 === 0) {
+           const square = document.getElementById(squareIndex + j);
+           square.innerHTML += letter;
+         } else {
+           const square = document.getElementById(squareIndex + (j * 10));
+           square.innerHTML += letter;
+           console.log(square.innerHTML)
+        }    
         }
   }
 }
 
-//randomly select whether to place words horizontally or vertically
-const wordPlacement = () => {
-  let number = indexGenerator(20);
-  if(number % 2 === 0) {
-    return placeHorizontal(wordList);
-  } else {
-    return placeVertical(wordList);
-  }
-}
+
+
 
 
 //fill empty spaces:
@@ -103,7 +118,7 @@ const fillSpace = () => {
   }
 }
  
-//createGrid();
+
 
 
 
@@ -123,18 +138,18 @@ do{
   wordList.push(data[index].word);
   }while (wordList.length < 6);
 
-  createWordList()
+  createWordList();
 
-  createGrid()
+  createGrid();
 
-  wordPlacement()
+  wordPlacement(wordList);
 
-  fillSpace()
+  fillSpace();
 
   
 })
 .catch(err =>  {
-  alert("You've rendered us speechless, we're all out of words")
+  alert("You've rendered us speechless, we're all out of words..."  + err)
 });
 
 
@@ -150,8 +165,6 @@ const handleClearGrid = clearButton.addEventListener("click", (e) => {
   "";
   gridContainer.innerHTML = "";
 })
-
-
 
 
 

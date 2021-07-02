@@ -52,44 +52,51 @@ var createGrid = function createGrid() {
     gridContainer.appendChild(gridSquares);
   }
 }; //place words from wordList array horizontally in grid
+//  const placeHorizontal = (arr) => {
+//     //Select random square on grid and add word to square
+//      for(let i = 0; i < arr.length; i++) {
+//           const squareIndex = Math.floor(Math.random() * 99);
+//           let tempWord = arr[i];
+//              for(let j = 0; j < tempWord.length; j++) {
+//                let letter = tempWord.split('')[j];
+//                const square = document.getElementById(squareIndex + j);
+//                square.innerHTML += letter;        
+//               }
+//         }  
+//    }
+//  // place words from wordList array vertically in grid
+//  const placeVertical = (arr) => {  
+//   for(let i = 0; i < arr.length; i++) {
+//     const squareIndex = Math.floor(Math.random() * 50);
+//     let tempWord = arr[i];
+//         for(let j = 0; j < tempWord.length; j++) {
+//           let letter = tempWord.split('')[j];
+//           const square = document.getElementById(squareIndex + (j*10));
+//           square.innerHTML += letter;
+//         }
+//   }
+// }
+//randomly select whether to place words horizontally or vertically
 
 
-var placeHorizontal = function placeHorizontal(arr) {
-  //Select random square on grid and add word to square
-  for (var i = 0; i < arr.length; i++) {
-    var squareIndex = Math.floor(Math.random() * 99);
-    var tempWord = arr[i];
-
-    for (var j = 0; j < tempWord.length; j++) {
-      var letter = tempWord.split('')[j];
-      var square = document.getElementById(squareIndex + j);
-      square.innerHTML += letter;
-    }
-  }
-}; // place words from wordList array vertically in grid
-
-
-var placeVertical = function placeVertical(arr) {
+var wordPlacement = function wordPlacement(arr) {
   for (var i = 0; i < arr.length; i++) {
     var squareIndex = Math.floor(Math.random() * 50);
-    var tempWord = arr[i];
+    var lettersArr = arr[i];
 
-    for (var j = 0; j < tempWord.length; j++) {
-      var letter = tempWord.split('')[j];
-      var square = document.getElementById(squareIndex + j * 10);
-      square.innerHTML += letter;
+    for (var j = 0; j < lettersArr.length; j++) {
+      var letter = lettersArr[j];
+
+      if (squareIndex % 2 === 0) {
+        var square = document.getElementById(squareIndex + j);
+        square.innerHTML += letter;
+      } else {
+        var _square = document.getElementById(squareIndex + j * 10);
+
+        _square.innerHTML += letter;
+        console.log(_square.innerHTML);
+      }
     }
-  }
-}; //randomly select whether to place words horizontally or vertically
-
-
-var wordPlacement = function wordPlacement() {
-  var number = indexGenerator(20);
-
-  if (number % 2 === 0) {
-    return placeHorizontal(wordList);
-  } else {
-    return placeVertical(wordList);
   }
 }; //fill empty spaces:
 
@@ -104,8 +111,7 @@ var fillSpace = function fillSpace() {
       gridSpaceArr[i].innerHTML = letterFillArr[letterIndex];
     }
   }
-}; //createGrid();
-//fetch list of words from API on button click
+}; //fetch list of words from API on button click
 
 
 var handleNewGrid = newGridBtn.addEventListener("click", function (e) {
@@ -122,10 +128,10 @@ var handleNewGrid = newGridBtn.addEventListener("click", function (e) {
 
     createWordList();
     createGrid();
-    wordPlacement();
+    wordPlacement(wordList);
     fillSpace();
   })["catch"](function (err) {
-    alert("You've rendered us speechless, we're all out of words");
+    alert("You've rendered us speechless, we're all out of words..." + err);
   });
 }); //clear list and grid
 
