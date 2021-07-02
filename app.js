@@ -5,11 +5,36 @@ const wordsToFind = document.querySelector("ul");
 const gridContainer = document.querySelector(".game__main__grid");
 const gridStyle = document.styleSheets[1];
 
+const randomNumberArr = [];
+
+const generateRandomNumberArr = () => {
+  for (let i = 0; i < 100; i++) {
+    randomNumberArr.push(i);
+  }
+}
+generateRandomNumberArr()
+console.log(randomNumberArr);
 
 
 
 //array to hold basic word list
 const wordList = [];
+//array of 6 random numbers to choose words & grid slots
+const indexGenerator = () => {
+  const indices = [];
+  while (indices.length < 5) {
+    let index = Math.floor(Math.random() * 99);
+    if(indices.indexOf(index) === -1) {
+      indices.push(index);
+    }
+    return indices;
+  }
+}
+
+
+
+
+
 
 //fetch list of words from API
   fetch("https://api.datamuse.com/words?ml=software+development").then(res => {
@@ -19,12 +44,21 @@ const wordList = [];
 
  //pull 10 words between 3 and 6 words in length from list at random and pushes to wordList array
  //how to ensure unique words - includes()? - !!!!!!!!!!!!! NOT FIXED
- let i = 0;
- do {
-  const index = Math.floor(Math.random() *100);
-  if(data[index].word.length > 2 && data[index].word.length < 7 && !wordList.includes(i)) 
+;
+let i = 0;
+do{
+  const index = indexGenerator();
+  if(data[index].word.length > 2 && data[index].word.length < 7) 
   wordList.push(data[index].word);
-  } while (wordList.length < 6);
+} while (wordList.length < 6);
+
+
+//  let i = 0;
+//  do {
+//   const index = Math.floor(Math.random()*100);
+//   if(data[index].word.length > 2 && data[index].word.length < 7 && !wordList.includes(i)) 
+//   wordList.push(data[index].word);
+//   } while (wordList.length < 6);
 
 
   // for(let i=0; i < 30; i++) {
@@ -50,15 +84,7 @@ const wordList = [];
     gridContainer.appendChild(gridSquares);
    }
    
-   //go through each word in list
-   //create separate array for each word
-   //place first letter of word randomly 
-   //each following letter in horizontal or vertical direction
-
-
-
-
-
+ 
  //place words from wordList array horizontally in grid
    //const placeHorizontal = (arr) => {
        
@@ -78,15 +104,14 @@ const wordList = [];
   //  placeHorizontal(wordList);   
    
    //})
-
   
       //place words from wordList array vertically in grid
    const placeVertical = (arr) => {
        
     //select random square on grid and add word to square
     for(let i = 0; i < arr.length; i++) {
-         const squareIndex = Math.floor(Math.random() * 40);
-         console.log(squareIndex)
+         const squareIndex = Math.floor(Math.random() * 50);
+         //console.log(squareIndex)
          let tempWord = arr[i];
             for(let j = 0; j < tempWord.length; j++) {
               let letter = tempWord.split('')[j];
@@ -94,19 +119,17 @@ const wordList = [];
               square.innerHTML += letter;        
          
                //console.log(letter);
-               console.log(square)
+               //console.log(square)
           
          }
 
        }  
-  }
+  
   placeVertical(wordList);   
   
 
-
-  })
-
- 
+      }
+})
 
 .catch(err =>  {
   alert("You've rendered us speechless, we're all out of words")
