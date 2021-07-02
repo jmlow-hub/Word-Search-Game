@@ -5,6 +5,11 @@ const wordsToFind = document.querySelector("ul");
 const gridContainer = document.querySelector(".game__main__grid");
 const gridStyle = document.styleSheets[1];
 
+//arrays
+//array to hold basic word list
+const wordList = [];
+const letterFillArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+
 // const randomNumberArr = [];
 
 // const generateRandomNumberArr = () => {
@@ -17,8 +22,7 @@ const gridStyle = document.styleSheets[1];
 
 
 
-//array to hold basic word list
-const wordList = [];
+
 //array of 6 random numbers to choose words & grid slots
 // const indexGenerator = (repeater) => {
 //   const indices = [];
@@ -97,18 +101,32 @@ do{
 
       for(let i = 0; i < arr.length; i++) {
         const squareIndex = Math.floor(Math.random() * 50);
-        console.log(squareIndex);
+        
         let tempWord = arr[i];
             for(let j = 0; j < tempWord.length; j++) {
               let letter = tempWord.split('')[j];
               const square = document.getElementById(squareIndex + (j*10));
               square.innerHTML += letter;
 
-              console.log(letter);
             }
       }
     }
 placeVertical(wordList);
+
+
+//fill empty spaces:
+const fillSpace = () => {
+  const gridSpaceArr = document.getElementsByClassName("game__main__grid__grid-square");
+  for (let i = 0; i < gridSpaceArr.length; i++) {
+    const letterIndex = Math.floor(Math.random() * 25);
+    if(gridSpaceArr[i].innerHTML === "") {
+      gridSpaceArr[i].innerHTML = letterFillArr[letterIndex];
+    }
+  }
+
+}
+fillSpace()
+
   
 })
 .catch(err =>  {

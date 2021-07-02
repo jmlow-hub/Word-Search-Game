@@ -5,16 +5,18 @@ var newGridBtn = document.querySelector(".game__intro__new-grid-btn");
 var clearButton = document.querySelector(".game__end__clear-btn");
 var wordsToFind = document.querySelector("ul");
 var gridContainer = document.querySelector(".game__main__grid");
-var gridStyle = document.styleSheets[1]; // const randomNumberArr = [];
+var gridStyle = document.styleSheets[1]; //arrays
+//array to hold basic word list
+
+var wordList = [];
+var letterFillArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]; // const randomNumberArr = [];
 // const generateRandomNumberArr = () => {
 //   for (let i = 0; i < 100; i++) {
 //     randomNumberArr.push(i);
 //   }
 // }
 // generateRandomNumberArr()
-//array to hold basic word list
-
-var wordList = []; //array of 6 random numbers to choose words & grid slots
+//array of 6 random numbers to choose words & grid slots
 // const indexGenerator = (repeater) => {
 //   const indices = [];
 //   while (indices.length < 5) {
@@ -77,19 +79,31 @@ fetch("https://api.datamuse.com/words?ml=software+development").then(function (r
   var placeVertical = function placeVertical(arr) {
     for (var _i3 = 0; _i3 < arr.length; _i3++) {
       var squareIndex = Math.floor(Math.random() * 50);
-      console.log(squareIndex);
       var tempWord = arr[_i3];
 
       for (var j = 0; j < tempWord.length; j++) {
         var letter = tempWord.split('')[j];
         var square = document.getElementById(squareIndex + j * 10);
         square.innerHTML += letter;
-        console.log(letter);
       }
     }
   };
 
-  placeVertical(wordList);
+  placeVertical(wordList); //fill empty spaces:
+
+  var fillSpace = function fillSpace() {
+    var gridSpaceArr = document.getElementsByClassName("game__main__grid__grid-square");
+
+    for (var _i4 = 0; _i4 < gridSpaceArr.length; _i4++) {
+      var letterIndex = Math.floor(Math.random() * 25);
+
+      if (gridSpaceArr[_i4].innerHTML === "") {
+        gridSpaceArr[_i4].innerHTML = letterFillArr[letterIndex];
+      }
+    }
+  };
+
+  fillSpace();
 })["catch"](function (err) {
   alert("You've rendered us speechless, we're all out of words");
 }); //fill empty spaces with random letters
