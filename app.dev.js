@@ -106,7 +106,22 @@ var handleNewGrid = newGridBtn.addEventListener("click", function (e) {
   })["catch"](function (err) {
     alert("You've rendered us speechless, we're all out of words..." + err);
   });
-}); //clear list and grid
+}); //select the word
+//click on div/letter
+
+var handleSquare = gridContainer.addEventListener("click", function (e) {
+  e.preventDefault();
+  var content = e.target.innerHTML;
+
+  if (e.target && e.target.classList == "game__main__grid__grid-square") {
+    console.log(content);
+  }
+
+  ;
+}); //value is pushed to array
+//compare value to value in wordlist
+//if matches, tick/highlight on list somehow?
+//clear list and grid
 
 var handleClearGrid = clearButton.addEventListener("click", function (e) {
   e.preventDefault();

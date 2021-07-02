@@ -7,6 +7,7 @@ const submitBtn = document.querySelector(".game__end__submit-btn");
 
 
 
+
 //arrays
 //array to hold basic word list
 const wordList = [];
@@ -82,7 +83,6 @@ const fillSpace = () => {
   }
 }
  
-
 //fetch list of words from API on button click
 const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
   e.preventDefault()
@@ -114,6 +114,30 @@ do{
 
 
 })
+
+//select the word
+//click on div/letter
+const handleSquare = gridContainer.addEventListener("click", (e) => {
+  e.preventDefault();
+  let content = e.target.innerHTML;
+
+  if(e.target && e.target.classList == "game__main__grid__grid-square") {
+    console.log(content);
+    
+   
+  }
+
+ 
+;
+})
+  
+  
+
+//value is pushed to array
+//compare value to value in wordlist
+//if matches, tick/highlight on list somehow?
+
+
 
 
 
