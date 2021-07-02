@@ -17,17 +17,21 @@ var letterFillArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l",
 // }
 // generateRandomNumberArr()
 //array of 6 random numbers to choose words & grid slots
-// const indexGenerator = (repeater) => {
-//   const indices = [];
-//   while (indices.length < 5) {
-//     let index = Math.floor(Math.random() * repeater);
-//     if(indices.indexOf(index) === -1) {
-//       indices.push(index);
-//     }
-//     return indices;
-//   }
-// }
-//create list of words to find in relevant container
+
+var indexGenerator = function indexGenerator(repeater) {
+  var indices = [];
+
+  while (indices.length < 5) {
+    var index = Math.floor(Math.random() * repeater);
+
+    if (indices.indexOf(index) === -1) {
+      indices.push(index);
+    }
+
+    return indices;
+  }
+}; //create list of words to find in relevant container
+
 
 var createWordList = function createWordList() {
   for (var i = 0; i < 6; i++) {
@@ -74,6 +78,17 @@ var placeVertical = function placeVertical(arr) {
       var square = document.getElementById(squareIndex + j * 10);
       square.innerHTML += letter;
     }
+  }
+}; //randomly select whether to place words horizontally or vertically
+
+
+var wordPlacement = function wordPlacement() {
+  var number = indexGenerator(20);
+
+  if (number % 2 === 0) {
+    return placeHorizontal(wordList);
+  } else {
+    return placeVertical(wordList);
   }
 }; //fill empty spaces:
 

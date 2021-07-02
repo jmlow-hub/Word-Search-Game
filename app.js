@@ -20,16 +20,16 @@ const letterFillArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l
 // generateRandomNumberArr()
 
 //array of 6 random numbers to choose words & grid slots
-// const indexGenerator = (repeater) => {
-//   const indices = [];
-//   while (indices.length < 5) {
-//     let index = Math.floor(Math.random() * repeater);
-//     if(indices.indexOf(index) === -1) {
-//       indices.push(index);
-//     }
-//     return indices;
-//   }
-// }
+const indexGenerator = (repeater) => {
+  const indices = [];
+  while (indices.length < 5) {
+    let index = Math.floor(Math.random() * repeater);
+    if(indices.indexOf(index) === -1) {
+      indices.push(index);
+    }
+    return indices;
+  }
+}
 
 //create list of words to find in relevant container
 const createWordList = () => {
@@ -66,21 +66,30 @@ const createGrid = () => {
         }  
    }
 
+
  // place words from wordList array vertically in grid
  const placeVertical = (arr) => {  
-
   for(let i = 0; i < arr.length; i++) {
     const squareIndex = Math.floor(Math.random() * 50);
-    
     let tempWord = arr[i];
         for(let j = 0; j < tempWord.length; j++) {
           let letter = tempWord.split('')[j];
           const square = document.getElementById(squareIndex + (j*10));
           square.innerHTML += letter;
-
         }
   }
 }
+
+//randomly select whether to place words horizontally or vertically
+const wordPlacement = () => {
+  let number = indexGenerator(20);
+  if(number % 2 === 0) {
+    return placeHorizontal(wordList);
+  } else {
+    return placeVertical(wordList);
+  }
+}
+
 
 //fill empty spaces:
 const fillSpace = () => {
