@@ -4,6 +4,7 @@ const clearButton = document.querySelector(".game__end__clear-btn");
 const wordsToFind = document.querySelector("ul");
 const gridContainer = document.querySelector(".game__main__grid");
 const gridStyle = document.styleSheets[1];
+console.log(clearButton)
 
 //arrays
 //array to hold basic word list
@@ -102,18 +103,19 @@ const fillSpace = () => {
   }
 }
  
+//createGrid();
 
 
 
-//fetch list of words from API
+
+//fetch list of words from API on button click
+const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
+  e.preventDefault()
+
   fetch("https://api.datamuse.com/words?ml=software+development").then(res => {
   return res.json();
 })
 .then(data => {
-
- //pull 10 words between 3 and 6 words in length from list at random and pushes to wordList array
- //how to ensure unique words - includes()? - !!!!!!!!!!!!! NOT FIXED
-;
 let i = 0;
 do{
   const index = Math.floor(Math.random()*99);
@@ -121,29 +123,13 @@ do{
   wordList.push(data[index].word);
   }while (wordList.length < 6);
 
+  createWordList()
 
+  createGrid()
 
-   
- 
- 
-   
-   
-  
+  wordPlacement()
 
-
-
-//fill empty spaces:
-const fillSpace = () => {
-  const gridSpaceArr = document.getElementsByClassName("game__main__grid__grid-square");
-  for (let i = 0; i < gridSpaceArr.length; i++) {
-    const letterIndex = Math.floor(Math.random() * 25);
-    if(gridSpaceArr[i].innerHTML === "") {
-      gridSpaceArr[i].innerHTML = letterFillArr[letterIndex];
-    }
-  }
-
-}
-
+  fillSpace()
 
   
 })
@@ -152,7 +138,18 @@ const fillSpace = () => {
 });
 
 
- 
+})
+
+
+
+//clear list and grid
+const handleClearGrid = clearButton.addEventListener("click", (e) => {
+  e.preventDefault()
+
+  wordsToFind.innerHTML = "";
+  "";
+  gridContainer.innerHTML = "";
+})
 
 
 
@@ -161,16 +158,3 @@ const fillSpace = () => {
 
 
 
-//fill empty spaces with random letters
-//select word - change color - first letter last letter?
-//word is removed or indicated as clicked on list somehow
-
-
-
-  //create individual letters from the array to add to the grid squares 
-  //  for(let i = 0; i < 6; i++) {
-        
-  //    const letterArr = Array.from(wordList[i]);
-
-    
-  // }

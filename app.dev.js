@@ -5,7 +5,8 @@ var newGridBtn = document.querySelector(".game__intro__new-grid-btn");
 var clearButton = document.querySelector(".game__end__clear-btn");
 var wordsToFind = document.querySelector("ul");
 var gridContainer = document.querySelector(".game__main__grid");
-var gridStyle = document.styleSheets[1]; //arrays
+var gridStyle = document.styleSheets[1];
+console.log(clearButton); //arrays
 //array to hold basic word list
 
 var wordList = [];
@@ -103,40 +104,34 @@ var fillSpace = function fillSpace() {
       gridSpaceArr[i].innerHTML = letterFillArr[letterIndex];
     }
   }
-}; //fetch list of words from API
+}; //createGrid();
+//fetch list of words from API on button click
 
 
-fetch("https://api.datamuse.com/words?ml=software+development").then(function (res) {
-  return res.json();
-}).then(function (data) {
-  //pull 10 words between 3 and 6 words in length from list at random and pushes to wordList array
-  //how to ensure unique words - includes()? - !!!!!!!!!!!!! NOT FIXED
-  ;
-  var i = 0;
+var handleNewGrid = newGridBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  fetch("https://api.datamuse.com/words?ml=software+development").then(function (res) {
+    return res.json();
+  }).then(function (data) {
+    var i = 0;
 
-  do {
-    var index = Math.floor(Math.random() * 99);
-    if (data[index].word.length > 2 && data[index].word.length < 7) wordList.push(data[index].word);
-  } while (wordList.length < 6); //fill empty spaces:
+    do {
+      var index = Math.floor(Math.random() * 99);
+      if (data[index].word.length > 2 && data[index].word.length < 7) wordList.push(data[index].word);
+    } while (wordList.length < 6);
 
+    createWordList();
+    createGrid();
+    wordPlacement();
+    fillSpace();
+  })["catch"](function (err) {
+    alert("You've rendered us speechless, we're all out of words");
+  });
+}); //clear list and grid
 
-  var fillSpace = function fillSpace() {
-    var gridSpaceArr = document.getElementsByClassName("game__main__grid__grid-square");
-
-    for (var _i = 0; _i < gridSpaceArr.length; _i++) {
-      var letterIndex = Math.floor(Math.random() * 25);
-
-      if (gridSpaceArr[_i].innerHTML === "") {
-        gridSpaceArr[_i].innerHTML = letterFillArr[letterIndex];
-      }
-    }
-  };
-})["catch"](function (err) {
-  alert("You've rendered us speechless, we're all out of words");
-}); //fill empty spaces with random letters
-//select word - change color - first letter last letter?
-//word is removed or indicated as clicked on list somehow
-//create individual letters from the array to add to the grid squares 
-//  for(let i = 0; i < 6; i++) {
-//    const letterArr = Array.from(wordList[i]);
-// }
+var handleClearGrid = clearButton.addEventListener("click", function (e) {
+  e.preventDefault();
+  wordsToFind.innerHTML = "";
+  "";
+  gridContainer.innerHTML = "";
+});
