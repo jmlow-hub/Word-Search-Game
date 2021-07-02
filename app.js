@@ -19,10 +19,6 @@ const letterFillArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l
 // }
 // generateRandomNumberArr()
 
-
-
-
-
 //array of 6 random numbers to choose words & grid slots
 // const indexGenerator = (repeater) => {
 //   const indices = [];
@@ -35,8 +31,68 @@ const letterFillArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l
 //   }
 // }
 
+//create list of words to find in relevant container
+const createWordList = () => {
+    for(let i = 0; i < 6; i++) {
+    const newListItem = document.createElement("li");
+    const listItemContent = wordList[i];
+    newListItem.innerHTML = listItemContent;
+    wordsToFind.appendChild(newListItem);
+   }
+}
+//create 10 x 10 grid in relevant container - with class and id
+const createGrid = () => {
+    for(let i = 0; i < 100; i++) {
+    const gridSquares = document.createElement("div");
+    gridSquares.setAttribute("id", i);
+    gridSquares.classList.add("game__main__grid__grid-square")
+    gridContainer.appendChild(gridSquares);
+   }
+  }
 
 
+ //place words from wordList array horizontally in grid
+ const placeHorizontal = (arr) => {
+    //Select random square on grid and add word to square
+     for(let i = 0; i < arr.length; i++) {
+          const squareIndex = Math.floor(Math.random() * 99);
+          let tempWord = arr[i];
+             for(let j = 0; j < tempWord.length; j++) {
+               let letter = tempWord.split('')[j];
+               const square = document.getElementById(squareIndex + j);
+               square.innerHTML += letter;        
+                      
+              }
+        }  
+   }
+
+ // place words from wordList array vertically in grid
+ const placeVertical = (arr) => {  
+
+  for(let i = 0; i < arr.length; i++) {
+    const squareIndex = Math.floor(Math.random() * 50);
+    
+    let tempWord = arr[i];
+        for(let j = 0; j < tempWord.length; j++) {
+          let letter = tempWord.split('')[j];
+          const square = document.getElementById(squareIndex + (j*10));
+          square.innerHTML += letter;
+
+        }
+  }
+}
+
+//fill empty spaces:
+const fillSpace = () => {
+  const gridSpaceArr = document.getElementsByClassName("game__main__grid__grid-square");
+  for (let i = 0; i < gridSpaceArr.length; i++) {
+    const letterIndex = Math.floor(Math.random() * 25);
+    if(gridSpaceArr[i].innerHTML === "") {
+      gridSpaceArr[i].innerHTML = letterFillArr[letterIndex];
+    }
+  }
+}
+ 
 
 
 
@@ -57,61 +113,14 @@ do{
   }while (wordList.length < 6);
 
 
-   //create list of words to find in relevant container
-   for(let i = 0; i < 6; i++) {
-    const newListItem = document.createElement("li");
-    const listItemContent = wordList[i];
-    newListItem.innerHTML = listItemContent;
-    wordsToFind.appendChild(newListItem);
-   }
 
-   //create 10 x 10 grid in relevant container - with class and id
-   for(let i = 0; i < 100; i++) {
-    const gridSquares = document.createElement("div");
-    gridSquares.setAttribute("id", i);
-    gridSquares.classList.add("game__main__grid__grid-square")
-    //gridSquares.innerHTML = "M";
-    gridContainer.appendChild(gridSquares);
-   }
    
  
- //place words from wordList array horizontally in grid
-  //  const placeHorizontal = (arr) => {
-       
-  //    //select random square on grid and add word to square
-  //    for(let i = 0; i < arr.length; i++) {
-  //         const squareIndex = Math.floor(Math.random() * 99);
-  //         console.log(squareIndex);
-  //         let tempWord = arr[i];
-  //            for(let j = 0; j < tempWord.length; j++) {
-  //              let letter = tempWord.split('')[j];
-  //              const square = document.getElementById(squareIndex + j);
-  //              square.innerHTML += letter;        
-          
-  //               console.log(letter);
-  //             }
-  //       }  
-  //  }
-  //  placeHorizontal(wordList);   
+ 
    
    
   
-     // place words from wordList array vertically in grid
-   const placeVertical = (arr) => {  
 
-      for(let i = 0; i < arr.length; i++) {
-        const squareIndex = Math.floor(Math.random() * 50);
-        
-        let tempWord = arr[i];
-            for(let j = 0; j < tempWord.length; j++) {
-              let letter = tempWord.split('')[j];
-              const square = document.getElementById(squareIndex + (j*10));
-              square.innerHTML += letter;
-
-            }
-      }
-    }
-placeVertical(wordList);
 
 
 //fill empty spaces:
@@ -125,7 +134,7 @@ const fillSpace = () => {
   }
 
 }
-fillSpace()
+
 
   
 })
