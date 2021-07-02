@@ -11,7 +11,10 @@ const submitBtn = document.querySelector(".game__end__submit-btn");
 //arrays
 //array to hold basic word list
 const wordList = [];
-const letterFillArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+//array to use as filler for empty squarse
+const letterFillArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+//empty array to hold selected word
+const selectedWordArr = [];
 
 // const randomNumberArr = [];
 
@@ -122,13 +125,10 @@ const handleSquare = gridContainer.addEventListener("click", (e) => {
   let content = e.target.innerHTML;
 
   if(e.target && e.target.classList == "game__main__grid__grid-square") {
-    console.log(content);
-    
-   
+    selectedWordArr.push(content);
+    console.log(selectedWordArr);
+     
   }
-
- 
-;
 })
   
   

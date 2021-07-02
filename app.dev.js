@@ -8,8 +8,11 @@ var gridContainer = document.querySelector(".game__main__grid");
 var submitBtn = document.querySelector(".game__end__submit-btn"); //arrays
 //array to hold basic word list
 
-var wordList = [];
-var letterFillArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]; // const randomNumberArr = [];
+var wordList = []; //array to use as filler for empty squarse
+
+var letterFillArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]; //empty array to hold selected word
+
+var selectedWordArr = []; // const randomNumberArr = [];
 // const generateRandomNumberArr = () => {
 //   for (let i = 0; i < 100; i++) {
 //     randomNumberArr.push(i);
@@ -114,10 +117,9 @@ var handleSquare = gridContainer.addEventListener("click", function (e) {
   var content = e.target.innerHTML;
 
   if (e.target && e.target.classList == "game__main__grid__grid-square") {
-    console.log(content);
+    selectedWordArr.push(content);
+    console.log(selectedWordArr);
   }
-
-  ;
 }); //value is pushed to array
 //compare value to value in wordlist
 //if matches, tick/highlight on list somehow?
