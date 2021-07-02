@@ -5,7 +5,8 @@ var newGridBtn = document.querySelector(".game__intro__new-grid-btn");
 var clearButton = document.querySelector(".game__end__clear-btn");
 var wordsToFind = document.querySelector("ul");
 var gridContainer = document.querySelector(".game__main__grid");
-var gridStyle = document.styleSheets[1]; //arrays
+var gridStyle = document.styleSheets[1];
+console.log(clearButton); //arrays
 //array to hold basic word list
 
 var wordList = [];
@@ -17,99 +18,120 @@ var letterFillArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l",
 // }
 // generateRandomNumberArr()
 //array of 6 random numbers to choose words & grid slots
-// const indexGenerator = (repeater) => {
-//   const indices = [];
-//   while (indices.length < 5) {
-//     let index = Math.floor(Math.random() * repeater);
-//     if(indices.indexOf(index) === -1) {
-//       indices.push(index);
-//     }
-//     return indices;
-//   }
-// }
-//fetch list of words from API
 
-fetch("https://api.datamuse.com/words?ml=software+development").then(function (res) {
-  return res.json();
-}).then(function (data) {
-  //pull 10 words between 3 and 6 words in length from list at random and pushes to wordList array
-  //how to ensure unique words - includes()? - !!!!!!!!!!!!! NOT FIXED
-  ;
-  var i = 0;
+var indexGenerator = function indexGenerator(repeater) {
+  var indices = [];
 
-  do {
-    var index = Math.floor(Math.random() * 99);
-    if (data[index].word.length > 2 && data[index].word.length < 7) wordList.push(data[index].word);
-  } while (wordList.length < 6); //create list of words to find in relevant container
+  while (indices.length < 5) {
+    var index = Math.floor(Math.random() * repeater);
+
+    if (indices.indexOf(index) === -1) {
+      indices.push(index);
+    }
+
+    return indices;
+  }
+}; //create list of words to find in relevant container
 
 
-  for (var _i = 0; _i < 6; _i++) {
+var createWordList = function createWordList() {
+  for (var i = 0; i < 6; i++) {
     var newListItem = document.createElement("li");
-    var listItemContent = wordList[_i];
+    var listItemContent = wordList[i];
     newListItem.innerHTML = listItemContent;
     wordsToFind.appendChild(newListItem);
-  } //create 10 x 10 grid in relevant container - with class and id
+  }
+}; //create 10 x 10 grid in relevant container - with class and id
 
 
-  for (var _i2 = 0; _i2 < 100; _i2++) {
+var createGrid = function createGrid() {
+  for (var i = 0; i < 100; i++) {
     var gridSquares = document.createElement("div");
-    gridSquares.setAttribute("id", _i2);
-    gridSquares.classList.add("game__main__grid__grid-square"); //gridSquares.innerHTML = "M";
-
+    gridSquares.setAttribute("id", i);
+    gridSquares.classList.add("game__main__grid__grid-square");
     gridContainer.appendChild(gridSquares);
-  } //place words from wordList array horizontally in grid
-  //  const placeHorizontal = (arr) => {
-  //    //select random square on grid and add word to square
-  //    for(let i = 0; i < arr.length; i++) {
-  //         const squareIndex = Math.floor(Math.random() * 99);
-  //         console.log(squareIndex);
-  //         let tempWord = arr[i];
-  //            for(let j = 0; j < tempWord.length; j++) {
-  //              let letter = tempWord.split('')[j];
-  //              const square = document.getElementById(squareIndex + j);
-  //              square.innerHTML += letter;        
-  //               console.log(letter);
-  //             }
-  //       }  
-  //  }
-  //  placeHorizontal(wordList);   
-  // place words from wordList array vertically in grid
+  }
+}; //place words from wordList array horizontally in grid
 
 
-  var placeVertical = function placeVertical(arr) {
-    for (var _i3 = 0; _i3 < arr.length; _i3++) {
-      var squareIndex = Math.floor(Math.random() * 50);
-      var tempWord = arr[_i3];
+var placeHorizontal = function placeHorizontal(arr) {
+  //Select random square on grid and add word to square
+  for (var i = 0; i < arr.length; i++) {
+    var squareIndex = Math.floor(Math.random() * 99);
+    var tempWord = arr[i];
 
-      for (var j = 0; j < tempWord.length; j++) {
-        var letter = tempWord.split('')[j];
-        var square = document.getElementById(squareIndex + j * 10);
-        square.innerHTML += letter;
-      }
+    for (var j = 0; j < tempWord.length; j++) {
+      var letter = tempWord.split('')[j];
+      var square = document.getElementById(squareIndex + j);
+      square.innerHTML += letter;
     }
-  };
+  }
+}; // place words from wordList array vertically in grid
 
-  placeVertical(wordList); //fill empty spaces:
 
-  var fillSpace = function fillSpace() {
-    var gridSpaceArr = document.getElementsByClassName("game__main__grid__grid-square");
+var placeVertical = function placeVertical(arr) {
+  for (var i = 0; i < arr.length; i++) {
+    var squareIndex = Math.floor(Math.random() * 50);
+    var tempWord = arr[i];
 
-    for (var _i4 = 0; _i4 < gridSpaceArr.length; _i4++) {
-      var letterIndex = Math.floor(Math.random() * 25);
-
-      if (gridSpaceArr[_i4].innerHTML === "") {
-        gridSpaceArr[_i4].innerHTML = letterFillArr[letterIndex];
-      }
+    for (var j = 0; j < tempWord.length; j++) {
+      var letter = tempWord.split('')[j];
+      var square = document.getElementById(squareIndex + j * 10);
+      square.innerHTML += letter;
     }
-  };
+  }
+}; //randomly select whether to place words horizontally or vertically
 
-  fillSpace();
-})["catch"](function (err) {
-  alert("You've rendered us speechless, we're all out of words");
-}); //fill empty spaces with random letters
-//select word - change color - first letter last letter?
-//word is removed or indicated as clicked on list somehow
-//create individual letters from the array to add to the grid squares 
-//  for(let i = 0; i < 6; i++) {
-//    const letterArr = Array.from(wordList[i]);
-// }
+
+var wordPlacement = function wordPlacement() {
+  var number = indexGenerator(20);
+
+  if (number % 2 === 0) {
+    return placeHorizontal(wordList);
+  } else {
+    return placeVertical(wordList);
+  }
+}; //fill empty spaces:
+
+
+var fillSpace = function fillSpace() {
+  var gridSpaceArr = document.getElementsByClassName("game__main__grid__grid-square");
+
+  for (var i = 0; i < gridSpaceArr.length; i++) {
+    var letterIndex = Math.floor(Math.random() * 25);
+
+    if (gridSpaceArr[i].innerHTML === "") {
+      gridSpaceArr[i].innerHTML = letterFillArr[letterIndex];
+    }
+  }
+}; //createGrid();
+//fetch list of words from API on button click
+
+
+var handleNewGrid = newGridBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  fetch("https://api.datamuse.com/words?ml=software+development").then(function (res) {
+    return res.json();
+  }).then(function (data) {
+    var i = 0;
+
+    do {
+      var index = Math.floor(Math.random() * 99);
+      if (data[index].word.length > 2 && data[index].word.length < 7) wordList.push(data[index].word);
+    } while (wordList.length < 6);
+
+    createWordList();
+    createGrid();
+    wordPlacement();
+    fillSpace();
+  })["catch"](function (err) {
+    alert("You've rendered us speechless, we're all out of words");
+  });
+}); //clear list and grid
+
+var handleClearGrid = clearButton.addEventListener("click", function (e) {
+  e.preventDefault();
+  wordsToFind.innerHTML = "";
+  "";
+  gridContainer.innerHTML = "";
+});
