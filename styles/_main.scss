@@ -12,20 +12,13 @@ main {
 
 .game__intro {
   width: 100vw;
-  height: 30%;
+  height: 15%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   
-    &__new-grid-btn {
-      width: 20%;
-      height: 30%;
-      
-    }
-
-    &__instructions {
-      width: 50%;
-
+       &__instructions {
+      width: 80%;
 
          }
   
@@ -35,21 +28,38 @@ main {
 
 .game__main {
   width: 100vw;
-  height: 60%;
+  height: 80%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 
+  &__new-grid-btn {
+    width: 20%;
+    
+    
+  }
     &__list {
       width: 40%;
       height: auto;
       display: flex;
+      justify-content: space-around;
     }
 
     &__grid {
-      width: 60%;
-      height: 400px;
+      width: 80%;
+      height: auto;
       display: grid;
-      grid-template-columns: auto auto auto auto auto;
-    }
+      grid-template-columns: (auto auto auto auto auto auto auto auto auto auto);
+      justify-content: center;
+      gap: 3px;
+      font-size: 20px;
+        }
+
+        &__grid-square {
+          text-align: center;
+                  
+        }
 
 
 }
@@ -57,8 +67,8 @@ main {
 
 .game__end {
   width: 100vw;
-  height: 10%;
+  height: 5%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 }

@@ -8,40 +8,49 @@ main {
 
 .game__intro {
   width: 100vw;
-  height: 30%;
+  height: 15%;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-.game__intro__new-grid-btn {
-  width: 20%;
-  height: 30%;
-}
 .game__intro__instructions {
-  width: 50%;
+  width: 80%;
 }
 
 .game__main {
   width: 100vw;
-  height: 60%;
+  height: 80%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.game__main__new-grid-btn {
+  width: 20%;
 }
 .game__main__list {
   width: 40%;
   height: auto;
   display: flex;
+  justify-content: space-around;
 }
 .game__main__grid {
-  width: 60%;
-  height: 400px;
+  width: 80%;
+  height: auto;
   display: grid;
-  grid-template-columns: auto auto auto auto auto;
+  grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+  justify-content: center;
+  gap: 3px;
+  font-size: 20px;
+}
+.game__main__grid-square {
+  text-align: center;
 }
 
 .game__end {
   width: 100vw;
-  height: 10%;
+  height: 5%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 }
