@@ -3,10 +3,11 @@
 
 main {
   width: 100vw;
-  height: 80vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   
  
 }
@@ -27,6 +28,7 @@ main {
        &__instructions {
          margin: 3px 10px;
          font-family: $second-font;
+         font-size: 1em;
          text-align: justify;
       
          }
@@ -37,11 +39,11 @@ main {
 
 .game__main {
   width: 100vw;
-  //height: 80%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
 
   &__list {
     width: 100vw;
@@ -73,7 +75,7 @@ main {
         
 
         button {
-          //width: 25%;
+         
           font-size: 1em;
           padding: 10px 20px;
           background-color: white;
@@ -96,8 +98,6 @@ main {
 
             }
 
-
-
         }
 
     
@@ -107,21 +107,67 @@ main {
     }
 
     &__grid {
-      width: 80%;
+      width: 60%;
       //height: 60%;
       display: grid;
       grid-template-columns: (auto auto auto auto auto auto auto auto auto auto);
       justify-content: center;
       gap: 3px;
-      font-size: 20px;
-      @include border();
+      padding: 10px;
+      font-size: 1.5em;
+      //@include border();
+      font-family: $primary-font;
+
         }
 
         &__grid-square {
           text-align: center;
+          
+          
                   
         }
 
 
 }
 
+@media screen and (min-width: 768px) {
+  .game__intro {
+    margin-top: 30px;
+
+  
+
+  }
+  .game__main {
+    flex-direction: row;
+    justify-content: space-between;
+
+    &__grid {
+      width: 50%;
+      font-size: 1.7em;
+    }
+
+    &__list {
+      width: 50%;
+      height: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+        ul {
+          height: 30%;
+        }
+
+        &__btns {
+          flex-direction: row;
+        }
+
+        button {
+          margin: 20px;
+          
+        }
+     
+    }
+  }
+
+
+}
