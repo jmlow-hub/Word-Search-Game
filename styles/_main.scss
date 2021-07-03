@@ -1,3 +1,4 @@
+@import "_variables.scss";
 
 
 main {
@@ -11,14 +12,21 @@ main {
 }
 
 .game__intro {
-  width: 100vw;
-  height: 15%;
+  width: 95vw;
+  //height: 15%;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  font-family: $primary-font;
+  margin: 10px 0;
+  @include border();
   
        &__instructions {
-      width: 80%;
+         margin: 3px 10px;
+         font-family: $second-font;
+         text-align: justify;
+      
 
          }
   
@@ -28,32 +36,52 @@ main {
 
 .game__main {
   width: 100vw;
-  height: 80%;
+  //height: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
 
-  &__new-grid-btn {
-    width: 20%;
-    
+  &__list {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+
+      li {
+        list-style-type: none;
+        font-family: $second-font;
+        font-size: 0.9em;
+        padding-bottom: 5px;
+      }
+
+      &__btns {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        button {
+          //width: 25%;
+          
+          font-family: $primary-font;
+        }
+
     
   }
-    &__list {
-      width: 40%;
-      height: auto;
-      display: flex;
-      justify-content: space-around;
+    
+      
     }
 
     &__grid {
       width: 80%;
-      height: auto;
+      //height: 60%;
       display: grid;
       grid-template-columns: (auto auto auto auto auto auto auto auto auto auto);
       justify-content: center;
       gap: 3px;
       font-size: 20px;
+      @include border();
         }
 
         &__grid-square {

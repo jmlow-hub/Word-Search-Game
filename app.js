@@ -3,8 +3,6 @@ const newGridBtn = document.querySelector(".game__intro__new-grid-btn");
 const clearButton = document.querySelector(".game__end__clear-btn");
 const wordsToFind = document.querySelector("ul");
 const gridContainer = document.querySelector(".game__main__grid");
-const submitBtn = document.querySelector(".game__end__submit-btn");
-
 
 
 
@@ -90,7 +88,7 @@ const fillSpace = () => {
 const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
   e.preventDefault()
 
-  fetch("https://api.datamuse.com/words?ml=software+development").then(res => {
+  fetch("https://api.datamuse.com/words?ml=software+development", {mode: "no-cors"}).then(res => {
   return res.json();
 })
 .then(data => {
@@ -131,19 +129,19 @@ const handleSquare = gridContainer.addEventListener("click", (e) => {
 })
   
   
-const handleSubmit = submitBtn.addEventListener("click", (e) => {
-  e.preventDefault();
+// const handleSubmit = submitBtn.addEventListener("click", (e) => {
+//   e.preventDefault();
   
-  //compare selectedword array with wordList 
-  let selectedWord = selectedWordArr.join("");
-  console.log(selectedWord)
-  if(wordsToFind.li.innerHTML == selectedWord) {
-    console.log(true)
+//   //compare selectedword array with wordList 
+//   let selectedWord = selectedWordArr.join("");
+//   console.log(selectedWord)
+//   if(wordsToFind.li.innerHTML == selectedWord) {
+//     console.log(true)
     
-  }
-  //clear array for next selection
-  selectedWordArr.length = 0;
-})
+//   }
+//   //clear array for next selection
+//   selectedWordArr.length = 0;
+// })
 
 
 

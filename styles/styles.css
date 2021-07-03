@@ -1,9 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Share&family=Ubuntu&display=swap");
 nav {
   width: 100vw;
-  height: 10vh;
+  height: 5vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Share", cursive;
+}
+nav h1 {
+  width: 80%;
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px grey;
 }
 
 main {
@@ -15,41 +24,61 @@ main {
 }
 
 .game__intro {
-  width: 100vw;
-  height: 15%;
+  width: 95vw;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  font-family: "Share", cursive;
+  margin: 10px 0;
+  border: 1px solid white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px grey;
 }
 .game__intro__instructions {
-  width: 80%;
+  margin: 3px 10px;
+  font-family: "Ubuntu", sans-serif;
+  text-align: justify;
 }
 
 .game__main {
   width: 100vw;
-  height: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
 }
-.game__main__new-grid-btn {
-  width: 20%;
-}
 .game__main__list {
-  width: 40%;
+  width: 100vw;
   height: auto;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+}
+.game__main__list li {
+  list-style-type: none;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 0.9em;
+  padding-bottom: 5px;
+}
+.game__main__list__btns {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.game__main__list__btns button {
+  font-family: "Share", cursive;
 }
 .game__main__grid {
   width: 80%;
-  height: auto;
   display: grid;
   grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
   justify-content: center;
   gap: 3px;
   font-size: 20px;
+  border: 1px solid white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px grey;
 }
 .game__main__grid-square {
   text-align: center;
@@ -67,5 +96,4 @@ main {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  border: 1px solid grey;
 }

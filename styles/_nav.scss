@@ -1,9 +1,19 @@
+@import "_variables.scss";
+
 
 nav {
   width: 100vw;
-  height: 10vh;
+  height: 5vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: $primary-font;
+
+      h1 {
+        width: 80%;
+        text-align: center;
+        @include border();
+        
+      }
   
 }

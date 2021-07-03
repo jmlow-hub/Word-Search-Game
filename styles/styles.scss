@@ -1,11 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Share&family=Ubuntu&display=swap');
+
+
 @import "_nav.scss";
 @import "_main.scss";
+@import "_variables.scss";
 
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  border: 1px solid grey;
+  //border: 1px solid grey;
 }
 
