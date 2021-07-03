@@ -14,9 +14,11 @@ main {
   align-items: center;
   font-family: "Share", cursive;
   margin: 10px 0;
-  border: 1px solid white;
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px grey;
+  border-width: 5px;
+  border-style: solid;
+  border-image: linear-gradient(90deg, #2cb3ba 0%, #fbba2d 100%) 30% stretch;
+  border-width: 2px;
+  box-shadow: 0px 0px 5px #2CB2BA;
 }
 .game__intro__instructions {
   margin: 3px 10px;
@@ -44,13 +46,32 @@ main {
   padding-bottom: 5px;
 }
 .game__main__list__btns {
-  width: 50%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
 .game__main__list__btns button {
+  font-size: 1em;
+  padding: 10px 20px;
+  background-color: white;
+  border-width: 5px;
+  border-style: solid;
+  border-image: linear-gradient(90deg, #2cb3ba 0%, #fbba2d 100%) 30% stretch;
+  border-width: 2px;
+  box-shadow: 0px 0px 5px #2CB2BA;
   font-family: "Share", cursive;
+  font-size: 1.5 em;
+  font-weight: bold;
+}
+.game__main__list__btns button:hover {
+  background: linear-gradient(90deg, #2cb3ba 0%, #fbba2d 100%);
+  color: white;
+}
+.game__main__list__btns button:active {
+  color: black;
+  background: white;
+  box-shadow: 0px 0px 5px gray inset;
 }
 .game__main__grid {
   width: 80%;
@@ -59,18 +80,12 @@ main {
   justify-content: center;
   gap: 3px;
   font-size: 20px;
-  border: 1px solid white;
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px grey;
+  border-width: 5px;
+  border-style: solid;
+  border-image: linear-gradient(90deg, #2cb3ba 0%, #fbba2d 100%) 30% stretch;
+  border-width: 2px;
+  box-shadow: 0px 0px 5px #2CB2BA;
 }
 .game__main__grid-square {
   text-align: center;
-}
-
-.game__end {
-  width: 100vw;
-  height: 5%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
 }

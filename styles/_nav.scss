@@ -9,10 +9,14 @@ nav {
   align-items: center;
   font-family: $primary-font;
 
+   
       h1 {
         width: 80%;
+       
         text-align: center;
+        background-color: white;
         @include border();
+       
         
       }
   

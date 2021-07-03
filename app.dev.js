@@ -87,31 +87,30 @@ var fillSpace = function fillSpace() {
     }
   }
 }; //fetch list of words from API on button click
-
-
-var handleNewGrid = newGridBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-  fetch("https://api.datamuse.com/words?ml=software+development", {
-    mode: "no-cors"
-  }).then(function (res) {
-    return res.json();
-  }).then(function (data) {
-    var i = 0;
-
-    do {
-      var index = Math.floor(Math.random() * 99);
-      if (data[index].word.length > 2 && data[index].word.length < 7) wordList.push(data[index].word);
-    } while (wordList.length < 6);
-
-    createWordList();
-    createGrid();
-    wordPlacement(wordList);
-    fillSpace();
-  })["catch"](function (err) {
-    alert("You've rendered us speechless, we're all out of words..." + err);
-  });
-}); //select the word
+// const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
+//   e.preventDefault()
+//   fetch("https://api.datamuse.com/words?ml=software+development", {mode: "no-cors"}).then(res => {
+//   return res.json();
+// })
+// .then(data => {
+// let i = 0;
+// do{
+//   const index = Math.floor(Math.random()*99);
+//   if(data[index].word.length > 2 && data[index].word.length < 7) 
+//   wordList.push(data[index].word);
+//   }while (wordList.length < 6);
+//   createWordList();
+//   createGrid();
+//   wordPlacement(wordList);
+//   fillSpace();
+// })
+// .catch(err =>  {
+//   alert("You've rendered us speechless, we're all out of words..."  + err)
+// });
+// })
+//select the word
 //click on div/letter
+
 
 var handleSquare = gridContainer.addEventListener("click", function (e) {
   e.preventDefault();
