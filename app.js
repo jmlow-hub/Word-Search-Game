@@ -50,10 +50,11 @@ const createGrid = () => {
     const gridSquares = document.createElement("div");
     gridSquares.setAttribute("id", i);
     gridSquares.classList.add("game__main__grid__grid-square")
+    gridSquares.innerHTML = "M";
     gridContainer.appendChild(gridSquares);
    }
   }
-
+createGrid();
 
 //randomly select whether to place words horizontally or vertically
 const wordPlacement = (arr) => {

@@ -52,8 +52,17 @@ main {
       li {
         list-style-type: none;
         font-family: $second-font;
-        font-size: 0.9em;
+        font-size: 1.1em;
         padding-bottom: 5px;
+
+          &:hover {
+            color: #2CB2BA;
+            text-decoration: underline overline;
+            text-decoration-color: $gradient;
+
+          }
+
+
       }
 
       &__btns {

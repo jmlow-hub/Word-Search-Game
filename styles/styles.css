@@ -62,8 +62,13 @@ main {
 .game__main__list li {
   list-style-type: none;
   font-family: "Ubuntu", sans-serif;
-  font-size: 0.9em;
+  font-size: 1.1em;
   padding-bottom: 5px;
+}
+.game__main__list li:hover {
+  color: #2CB2BA;
+  text-decoration: underline overline;
+  text-decoration-color: linear-gradient(90deg, #2cb3ba 0%, #fbba2d 100%);
 }
 .game__main__list__btns {
   width: 40%;

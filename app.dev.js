@@ -50,10 +50,12 @@ var createGrid = function createGrid() {
     var gridSquares = document.createElement("div");
     gridSquares.setAttribute("id", i);
     gridSquares.classList.add("game__main__grid__grid-square");
+    gridSquares.innerHTML = "M";
     gridContainer.appendChild(gridSquares);
   }
-}; //randomly select whether to place words horizontally or vertically
+};
 
+createGrid(); //randomly select whether to place words horizontally or vertically
 
 var wordPlacement = function wordPlacement(arr) {
   for (var i = 0; i < arr.length; i++) {
