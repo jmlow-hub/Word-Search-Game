@@ -40,6 +40,7 @@ const createWordList = () => {
     for(let i = 0; i < 6; i++) {
     const newListItem = document.createElement("li");
     const listItemContent = wordList[i];
+    newListItem.classList.add("game__main__list__item")
     newListItem.innerHTML = listItemContent;
     wordsToFind.appendChild(newListItem);
    }
@@ -97,6 +98,7 @@ const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
     do {
       const index = Math.floor(Math.random() *249);
       if(data[index].name.length > 2 && data[index].name.length < 7) {
+        data[index].name.toLowerCase();
         wordList.push(data[index].name);
       }
     }while (wordList.length < 6);
@@ -113,11 +115,8 @@ const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
     alert("We're all out of words... " + err)
   })
   
-   
 
 })
-
-
 
 
 //select the word
@@ -127,25 +126,27 @@ const handleSquare = gridContainer.addEventListener("click", (e) => {
   let content = e.target.innerHTML;
 //value is pushed to array
   if(e.target && e.target.classList == "game__main__grid__grid-square") {
-    selectedWordArr.push(content);
+    e.target.style.background = "linear-gradient(90deg, hsla(183, 62%, 45%, 1) 0%, hsla(41, 96%, 58%, 1) 100%)";
+    selectedWordArr.push(content);    
     console.log(selectedWordArr);  
   }
 })
   
   
-// const handleSubmit = submitBtn.addEventListener("click", (e) => {
-//   e.preventDefault();
+const handleCompare = wordsToFind.addEventListener("click", (e) => {
+  e.preventDefault();
   
-//   //compare selectedword array with wordList 
-//   let selectedWord = selectedWordArr.join("");
-//   console.log(selectedWord)
-//   if(wordsToFind.li.innerHTML == selectedWord) {
-//     console.log(true)
+  //compare selectedword array with wordList 
+  let selectedWord = selectedWordArr.join("");
+  
+  if(wordList.includes(selectedWord)) {
+    e.target.style.color = "grey";
     
-//   }
-//   //clear array for next selection
-//   selectedWordArr.length = 0;
-// })
+    
+  }
+  //clear array for next selection
+  selectedWordArr.length = 0;
+})
 
 
 
