@@ -19,7 +19,7 @@ var almostRandomNumber = function almostRandomNumber(multiplier) {
   do {
     var index = Math.floor(Math.random() * multiplier);
     randomNumberArr.push(index);
-  } while (randomNumberArr.length < 6);
+  } while (randomNumberArr.length < 4);
 
   var randomNum = Math.floor(randomNumberArr.reduce(function (acc, num) {
     return acc + num;
@@ -40,7 +40,7 @@ var almostRandomNumber = function almostRandomNumber(multiplier) {
 
 
 var createWordList = function createWordList() {
-  for (var i = 0; i < 6; i++) {
+  for (var i = 0; i < 4; i++) {
     var newListItem = document.createElement("li");
     var listItemContent = wordList[i];
     newListItem.classList.add("game__main__list__item");
@@ -51,7 +51,7 @@ var createWordList = function createWordList() {
 
 
 var createGrid = function createGrid() {
-  for (var i = 0; i < 150; i++) {
+  for (var i = 0; i < 225; i++) {
     var gridSquares = document.createElement("div");
     gridSquares.setAttribute("id", i);
     gridSquares.classList.add("game__main__grid__grid-square"); //gridSquares.innerHTML = "M";
@@ -63,8 +63,7 @@ var createGrid = function createGrid() {
 
 var wordPlacement = function wordPlacement(arr) {
   for (var i = 0; i < arr.length; i++) {
-    var squareIndex = almostRandomNumber(149);
-    console.log(squareIndex);
+    var squareIndex = almostRandomNumber(224);
     var lettersArr = arr[i];
 
     for (var j = 0; j < lettersArr.length; j++) {
@@ -73,8 +72,8 @@ var wordPlacement = function wordPlacement(arr) {
       if (squareIndex % 2 === 0) {
         var square = document.getElementById(squareIndex + j);
         square.innerHTML += letter;
-      } else if (squareIndex % 2 != 0 && squareIndex <= 50) {
-        var _square = document.getElementById(squareIndex + j * 12);
+      } else if (squareIndex % 2 != 0) {
+        var _square = document.getElementById(squareIndex + j * 15);
 
         _square.innerHTML += letter;
       }
@@ -101,7 +100,7 @@ var handleNewGrid = newGridBtn.addEventListener("click", function (e) {
   fetch("https://restcountries.eu/rest/v2/all").then(function (res) {
     return res.json();
   }).then(function (data) {
-    while (wordList.length < 6) {
+    while (wordList.length < 4) {
       var i = almostRandomNumber(249);
 
       if (data[i].name.length > 2 && data[i].name.length < 7) {

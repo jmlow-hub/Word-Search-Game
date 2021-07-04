@@ -110,7 +110,8 @@ main {
       width: 90%;
       //height: 60%;
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
+      grid-template-columns: repeat(15, 1fr);
+      grid-template-rows: repeat(15, 1fr);
       justify-content: center;
       gap: 3px;
       padding: 10px;

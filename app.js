@@ -4,6 +4,7 @@ const clearButton = document.querySelector(".game__end__clear-btn");
 const wordsToFind = document.querySelector("ul");
 const gridContainer = document.querySelector(".game__main__grid");
 
+
 //arrays
 //array to hold basic word list
 const wordList = [];
@@ -20,7 +21,7 @@ const almostRandomNumber = (multiplier) => {
       const index = Math.floor(Math.random() * multiplier);
       randomNumberArr.push(index);
       }
-    while (randomNumberArr.length < 6);
+    while (randomNumberArr.length < 4);
      let randomNum = Math.floor(randomNumberArr.reduce((acc, num) =>{
      return acc + num }) / 6);
      randomNumberArr.length = 0;
@@ -48,7 +49,7 @@ const almostRandomNumber = (multiplier) => {
 
 //create list of words to find in relevant container
 const createWordList = () => {
-    for(let i = 0; i < 6; i++) {
+    for(let i = 0; i < 4; i++) {
     const newListItem = document.createElement("li");
     const listItemContent = wordList[i];
     newListItem.classList.add("game__main__list__item")
@@ -58,7 +59,7 @@ const createWordList = () => {
 }
 //create 10 x 10 grid in relevant container - with class and id
 const createGrid = () => {
-    for(let i = 0; i < 150; i++) {
+    for(let i = 0; i < 225; i++) {
     const gridSquares = document.createElement("div");
     gridSquares.setAttribute("id", i);
     gridSquares.classList.add("game__main__grid__grid-square");
@@ -71,21 +72,24 @@ const createGrid = () => {
 //randomly select whether to place words horizontally or vertically
 const wordPlacement = (arr) => {
   for(let i = 0; i < arr.length; i++) {
-    const squareIndex = almostRandomNumber(149);
-    console.log(squareIndex)
+    const squareIndex = almostRandomNumber(224);
+    
     let lettersArr = arr[i];
       for(let j = 0; j < lettersArr.length; j++) {
-          let letter = lettersArr[j];                     
+          let letter = lettersArr[j];  
+                             
            if(squareIndex % 2 === 0) {
            const square = document.getElementById(squareIndex + j);
            square.innerHTML += letter;           
-         } else if(squareIndex % 2 != 0 && squareIndex <=50) {
-           const square = document.getElementById(squareIndex + (j * 12));
+         }    
+           else if(squareIndex % 2 != 0) {
+           const square = document.getElementById(squareIndex + (j * 15));
            square.innerHTML += letter;           
-        }    
+        }  
+        }  
         }
   }
-}
+
 
 //fill empty spaces:
 const fillSpace = () => {
@@ -107,7 +111,7 @@ const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
   })
   .then(data => {  
 
-    while(wordList.length < 6){
+    while(wordList.length < 4){
       const i = almostRandomNumber(249);
       
       if(data[i].name.length > 2 && data[i].name.length < 7) {

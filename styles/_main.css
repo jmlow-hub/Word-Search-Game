@@ -84,7 +84,8 @@ main {
 .game__main__grid {
   width: 90%;
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: repeat(15, 1fr);
   justify-content: center;
   gap: 3px;
   padding: 10px;
