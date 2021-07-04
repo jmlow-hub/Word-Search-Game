@@ -11,28 +11,32 @@ var wordList = []; //array to use as filler for empty squarse
 
 var letterFillArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]; //empty array to hold selected word
 
-var selectedWordArr = []; // const randomNumberArr = [];
-// const generateRandomNumberArr = () => {
-//   for (let i = 0; i < 100; i++) {
-//     randomNumberArr.push(i);
+var selectedWordArr = []; //random number array to use in selections
+
+var randomNumberArr = []; //function to generate random number
+
+var almostRandomNumber = function almostRandomNumber(multiplier) {
+  do {
+    var index = Math.floor(Math.random() * multiplier);
+    randomNumberArr.push(index);
+  } while (randomNumberArr.length < 6);
+
+  var randomNum = Math.floor(randomNumberArr.reduce(function (acc, num) {
+    return acc + num;
+  }) / 6);
+  randomNumberArr.length = 0;
+  return randomNum;
+}; // const shuffle = (arr) => {
+//   let number;
+//   for(let i = arr.length - 1; i > 0; i--) {
+//     let random = Math.floor(Math.random() * i + 1);
+//     number = arr[i];
+//     arr[i] = arr[random];
+//     arr[random] =  number;
 //   }
+//   return arr;
 // }
-// generateRandomNumberArr()
-//array of 6 random numbers to choose words & grid slots
-
-var indexGenerator = function indexGenerator(repeater) {
-  var indices = [];
-
-  while (indices.length < 5) {
-    var index = Math.floor(Math.random() * repeater);
-
-    if (indices.indexOf(index) === -1) {
-      indices.push(index);
-    }
-
-    return indices;
-  }
-}; //create list of words to find in relevant container
+//create list of words to find in relevant container
 
 
 var createWordList = function createWordList() {
@@ -59,7 +63,8 @@ var createGrid = function createGrid() {
 
 var wordPlacement = function wordPlacement(arr) {
   for (var i = 0; i < arr.length; i++) {
-    var squareIndex = Math.floor(Math.random() * 144);
+    var squareIndex = almostRandomNumber(149);
+    console.log(squareIndex);
     var lettersArr = arr[i];
 
     for (var j = 0; j < lettersArr.length; j++) {
@@ -96,16 +101,13 @@ var handleNewGrid = newGridBtn.addEventListener("click", function (e) {
   fetch("https://restcountries.eu/rest/v2/all").then(function (res) {
     return res.json();
   }).then(function (data) {
-    var i = 0;
+    while (wordList.length < 6) {
+      var i = almostRandomNumber(249);
 
-    do {
-      var index = Math.floor(Math.random() * 249);
-
-      if (data[index].name.length > 2 && data[index].name.length < 7) {
-        data[index].name.toLowerCase();
-        wordList.push(data[index].name);
+      if (data[i].name.length > 2 && data[i].name.length < 7) {
+        wordList.push(data[i].name);
       }
-    } while (wordList.length < 6);
+    }
 
     createWordList();
     createGrid();

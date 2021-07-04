@@ -11,27 +11,40 @@ const wordList = [];
 const letterFillArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 //empty array to hold selected word
 const selectedWordArr = [];
-
-// const randomNumberArr = [];
-
-// const generateRandomNumberArr = () => {
-//   for (let i = 0; i < 100; i++) {
-//     randomNumberArr.push(i);
-//   }
-// }
-// generateRandomNumberArr()
-
-//array of 6 random numbers to choose words & grid slots
-const indexGenerator = (repeater) => {
-  const indices = [];
-  while (indices.length < 5) {
-    let index = Math.floor(Math.random() * repeater);
-    if(indices.indexOf(index) === -1) {
-      indices.push(index);
-    }
-    return indices;
-  }
+//random number array to use in selections
+const randomNumberArr = [];
+//function to generate random number
+const almostRandomNumber = (multiplier) => {
+  
+    do {
+      const index = Math.floor(Math.random() * multiplier);
+      randomNumberArr.push(index);
+      }
+    while (randomNumberArr.length < 6);
+     let randomNum = Math.floor(randomNumberArr.reduce((acc, num) =>{
+     return acc + num }) / 6);
+     randomNumberArr.length = 0;
+     return randomNum;
+  
 }
+
+
+// const shuffle = (arr) => {
+//   let number;
+//   for(let i = arr.length - 1; i > 0; i--) {
+//     let random = Math.floor(Math.random() * i + 1);
+//     number = arr[i];
+//     arr[i] = arr[random];
+//     arr[random] =  number;
+//   }
+//   return arr;
+// }
+
+
+
+
+
+
 
 //create list of words to find in relevant container
 const createWordList = () => {
@@ -58,7 +71,8 @@ const createGrid = () => {
 //randomly select whether to place words horizontally or vertically
 const wordPlacement = (arr) => {
   for(let i = 0; i < arr.length; i++) {
-    const squareIndex = Math.floor(Math.random() * 144);
+    const squareIndex = almostRandomNumber(149);
+    console.log(squareIndex)
     let lettersArr = arr[i];
       for(let j = 0; j < lettersArr.length; j++) {
           let letter = lettersArr[j];                     
@@ -91,15 +105,16 @@ const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
   fetch("https://restcountries.eu/rest/v2/all").then(res => {
     return res.json();
   })
-  .then(data => {
-    let i = 0;
-    do {
-      const index = Math.floor(Math.random() *249);
-      if(data[index].name.length > 2 && data[index].name.length < 7) {
-        data[index].name.toLowerCase();
-        wordList.push(data[index].name);
-      }
-    }while (wordList.length < 6);
+  .then(data => {  
+
+    while(wordList.length < 6){
+      const i = almostRandomNumber(249);
+      
+      if(data[i].name.length > 2 && data[i].name.length < 7) {
+         wordList.push(data[i].name);
+    }
+
+}
 
     createWordList();
 
