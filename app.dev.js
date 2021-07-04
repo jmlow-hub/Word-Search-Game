@@ -49,13 +49,12 @@ var createGrid = function createGrid() {
   for (var i = 0; i < 100; i++) {
     var gridSquares = document.createElement("div");
     gridSquares.setAttribute("id", i);
-    gridSquares.classList.add("game__main__grid__grid-square");
-    gridSquares.innerHTML = "M";
+    gridSquares.classList.add("game__main__grid__grid-square"); //gridSquares.innerHTML = "M";
+
     gridContainer.appendChild(gridSquares);
   }
-};
+}; //randomly select whether to place words horizontally or vertically
 
-createGrid(); //randomly select whether to place words horizontally or vertically
 
 var wordPlacement = function wordPlacement(arr) {
   for (var i = 0; i < arr.length; i++) {
@@ -89,30 +88,32 @@ var fillSpace = function fillSpace() {
     }
   }
 }; //fetch list of words from API on button click
-// const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
-//   e.preventDefault()
-//   fetch("https://api.datamuse.com/words?ml=software+development", {mode: "no-cors"}).then(res => {
-//   return res.json();
-// })
-// .then(data => {
-// let i = 0;
-// do{
-//   const index = Math.floor(Math.random()*99);
-//   if(data[index].word.length > 2 && data[index].word.length < 7) 
-//   wordList.push(data[index].word);
-//   }while (wordList.length < 6);
-//   createWordList();
-//   createGrid();
-//   wordPlacement(wordList);
-//   fillSpace();
-// })
-// .catch(err =>  {
-//   alert("You've rendered us speechless, we're all out of words..."  + err)
-// });
-// })
-//select the word
-//click on div/letter
 
+
+var handleNewGrid = newGridBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  fetch("https://restcountries.eu/rest/v2/all").then(function (res) {
+    return res.json();
+  }).then(function (data) {
+    var i = 0;
+
+    do {
+      var index = Math.floor(Math.random() * 249);
+
+      if (data[index].name.length > 2 && data[index].name.length < 7) {
+        wordList.push(data[index].name);
+      }
+    } while (wordList.length < 6);
+
+    createWordList();
+    createGrid();
+    wordPlacement(wordList);
+    fillSpace();
+  })["catch"](function (err) {
+    alert("We're all out of words... " + err);
+  });
+}); //select the word
+//click on div/letter
 
 var handleSquare = gridContainer.addEventListener("click", function (e) {
   e.preventDefault();
