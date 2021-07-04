@@ -42,11 +42,6 @@ const almostRandomNumber = (multiplier) => {
 // }
 
 
-
-
-
-
-
 //create list of words to find in relevant container
 const createWordList = () => {
     for(let i = 0; i < 4; i++) {
@@ -78,17 +73,21 @@ const wordPlacement = (arr) => {
       for(let j = 0; j < lettersArr.length; j++) {
           let letter = lettersArr[j];  
                              
-           if(squareIndex % 2 === 0) {
-           const square = document.getElementById(squareIndex + j);
-           square.innerHTML += letter;           
-         }    
-           else if(squareIndex % 2 != 0) {
-           const square = document.getElementById(squareIndex + (j * 15));
-           square.innerHTML += letter;           
+          if(squareIndex % 2 === 0) {
+            const square = document.getElementById(squareIndex + j);
+            square.innerHTML += letter;            
+           }  
+          else if(squareIndex % 2 != 0) {
+            const square = document.getElementById(squareIndex + (j * 15));
+            square.innerHTML += letter;           
         }  
         }  
         }
   }
+
+  
+
+
 
 
 //fill empty spaces:
