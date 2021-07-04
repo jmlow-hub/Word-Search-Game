@@ -47,7 +47,7 @@ var createWordList = function createWordList() {
 
 
 var createGrid = function createGrid() {
-  for (var i = 0; i < 100; i++) {
+  for (var i = 0; i < 150; i++) {
     var gridSquares = document.createElement("div");
     gridSquares.setAttribute("id", i);
     gridSquares.classList.add("game__main__grid__grid-square"); //gridSquares.innerHTML = "M";
@@ -59,7 +59,7 @@ var createGrid = function createGrid() {
 
 var wordPlacement = function wordPlacement(arr) {
   for (var i = 0; i < arr.length; i++) {
-    var squareIndex = Math.floor(Math.random() * 50);
+    var squareIndex = Math.floor(Math.random() * 144);
     var lettersArr = arr[i];
 
     for (var j = 0; j < lettersArr.length; j++) {
@@ -69,7 +69,7 @@ var wordPlacement = function wordPlacement(arr) {
         var square = document.getElementById(squareIndex + j);
         square.innerHTML += letter;
       } else if (squareIndex % 2 != 0 && squareIndex <= 50) {
-        var _square = document.getElementById(squareIndex + j * 10);
+        var _square = document.getElementById(squareIndex + j * 12);
 
         _square.innerHTML += letter;
       }
@@ -134,6 +134,8 @@ var handleCompare = wordsToFind.addEventListener("click", function (e) {
 
   if (wordList.includes(selectedWord)) {
     e.target.style.color = "grey";
+  } else {
+    alert("Sorry, that's not correct. Try again");
   } //clear array for next selection
 
 

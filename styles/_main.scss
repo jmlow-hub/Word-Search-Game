@@ -107,10 +107,10 @@ main {
     }
 
     &__grid {
-      width: 60%;
+      width: 90%;
       //height: 60%;
       display: grid;
-      grid-template-columns: (auto auto auto auto auto auto auto auto auto auto);
+      grid-template-columns: repeat(12, 1fr);
       justify-content: center;
       gap: 3px;
       padding: 10px;

@@ -4,8 +4,6 @@ const clearButton = document.querySelector(".game__end__clear-btn");
 const wordsToFind = document.querySelector("ul");
 const gridContainer = document.querySelector(".game__main__grid");
 
-
-
 //arrays
 //array to hold basic word list
 const wordList = [];
@@ -47,7 +45,7 @@ const createWordList = () => {
 }
 //create 10 x 10 grid in relevant container - with class and id
 const createGrid = () => {
-    for(let i = 0; i < 100; i++) {
+    for(let i = 0; i < 150; i++) {
     const gridSquares = document.createElement("div");
     gridSquares.setAttribute("id", i);
     gridSquares.classList.add("game__main__grid__grid-square");
@@ -60,7 +58,7 @@ const createGrid = () => {
 //randomly select whether to place words horizontally or vertically
 const wordPlacement = (arr) => {
   for(let i = 0; i < arr.length; i++) {
-    const squareIndex = Math.floor(Math.random() * 50);
+    const squareIndex = Math.floor(Math.random() * 144);
     let lettersArr = arr[i];
       for(let j = 0; j < lettersArr.length; j++) {
           let letter = lettersArr[j];                     
@@ -68,7 +66,7 @@ const wordPlacement = (arr) => {
            const square = document.getElementById(squareIndex + j);
            square.innerHTML += letter;           
          } else if(squareIndex % 2 != 0 && squareIndex <=50) {
-           const square = document.getElementById(squareIndex + (j * 10));
+           const square = document.getElementById(squareIndex + (j * 12));
            square.innerHTML += letter;           
         }    
         }
@@ -140,9 +138,10 @@ const handleCompare = wordsToFind.addEventListener("click", (e) => {
   let selectedWord = selectedWordArr.join("");
   
   if(wordList.includes(selectedWord)) {
-    e.target.style.color = "grey";
-    
-    
+    e.target.style.color = "grey";    
+  }
+  else {
+    alert("Sorry, that's not correct. Try again");
   }
   //clear array for next selection
   selectedWordArr.length = 0;
