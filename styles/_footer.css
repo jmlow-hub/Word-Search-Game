@@ -1,8 +1,9 @@
 footer {
   width: 100vw;
-  height: 5vh;
+  height: 3vh;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: "Share", cursive;
+  font-size: 10px;
 }

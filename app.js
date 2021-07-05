@@ -184,7 +184,7 @@ const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
 
     //duplicateCheck()
 
-    //fillSpace();
+    fillSpace();
 
     
   })

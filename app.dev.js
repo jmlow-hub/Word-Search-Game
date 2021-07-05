@@ -133,7 +133,8 @@ var handleNewGrid = newGridBtn.addEventListener("click", function (e) {
     createWordList();
     createGrid();
     wordPlacement(wordList); //duplicateCheck()
-    //fillSpace();
+
+    fillSpace();
   })["catch"](function (err) {
     alert("We're all out of words... " + err);
   });
