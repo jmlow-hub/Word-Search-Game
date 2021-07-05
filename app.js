@@ -14,16 +14,24 @@ const letterFillArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l
  
 //empty array to hold selected word
 const selectedWordArr = [];
-//random number array to use in selections
-const randomNumberArr = [];
-//function to generate random number
+
+//function to grid location
 const gridSelector = () => {
     const gridLocationArr = [0,8,17,25,29,34,37,61,73,78,101,105,110,122,129,138,149,166,196,214];
     let index = Math.floor(Math.random() * gridLocationArr.length)
-    let gridLocation = gridLocationArr[index];
-    gridLocationArr.splice(index);
-    return gridLocation;
+    let location = gridLocationArr[index];
+    gridLocationArr.splice(index, 1);
+    return location;
+}
 
+//function to generate random number
+const numberGenerator = () => {
+  const range = (min, max) => [...Array(max - min + 1).keys()].map(i => i + min) //creates an array
+  const numberPickerArr = range(0, 249);  
+  let index = Math.floor(Math.random() * numberPickerArr.length)
+  let randomNumber = numberPickerArr[index];
+  numberPickerArr.splice(index, 1);
+  return randomNumber;
 }
 
    
@@ -84,7 +92,7 @@ const createGrid = () => {
 const wordPlacement = (arr) => {
   for(let i = 0; i < arr.length; i++) {
     const squareIndex = gridSelector();
-    console.log(squareIndex)
+      
         
     let lettersArr = arr[i];
       for(let j = 0; j < lettersArr.length; j++) {
@@ -102,54 +110,6 @@ const wordPlacement = (arr) => {
         }  
         }
   }
-
-
-
-
-  
-// const duplicateCheck = () => {
-//   const locationsArr = document.getElementsByClassName("game__main__grid__grid-square");
-//   const duplicates = [];
-  
-//   for(let i = 0; i < locationsArr.length; i++) {
-//       if(locationsArr[i].innerHTML.length > 1) {
-//          duplicates.push(i); 
-
-//          if(duplicates.length > 0) {
-//            for (let j = 0; j < duplicates.length; j++) {
-//               const id = j;
-//               const oldLocation = document.getElementById(id);
-//               const newlocation = document.getElementById(id + 6);
-//               newlocation.innerHTML = oldLocation.innerHTML          
-//            }
-         
-             
-//           }
-      
-//     }
-//       }
-
-//   }
-
-      // while(wordList.length < 4){
-      //   const i = almostRandomNumber(249);
-        
-      //   if(data[i].name.length > 2 && data[i].name.length < 7) {
-      //      wordList.push(data[i].name);
-      // }
-    
-  
-  
-
-
-
-
-
-
-
-
-
-
 
 
 //fill empty spaces:
@@ -173,7 +133,7 @@ const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
   .then(data => {  
 
     while(wordList.length < 4){
-      const i = Math.floor(Math.random() * 249);
+      const i = numberGenerator();
       
       if(data[i].name.length > 2 && data[i].name.length < 7) {
          wordList.push(data[i].name);
@@ -186,8 +146,6 @@ const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
     createGrid();
 
     wordPlacement(wordList);
-
-    //duplicateCheck()
 
     fillSpace();
 
@@ -230,11 +188,6 @@ const handleCompare = wordsToFind.addEventListener("click", (e) => {
   //clear array for next selection
   selectedWordArr.length = 0;
 })
-
-
-
-
-
 
 
 //clear list and grid
