@@ -90,7 +90,7 @@ var wordPlacement = function wordPlacement(arr) {
 //               const id = j;
 //               const oldLocation = document.getElementById(id);
 //               const newlocation = document.getElementById(id + 6);
-//               newlocation.innerHTML = oldLocation.innerHTML;
+//               newlocation.innerHTML = oldLocation.innerHTML          
 //            }
 //           }
 //     }
@@ -170,5 +170,5 @@ var handleClearGrid = clearButton.addEventListener("click", function (e) {
   wordsToFind.innerHTML = "";
   "";
   gridContainer.innerHTML = "";
-  randomNumberArr.length = 0;
+  wordList.length = 0;
 });

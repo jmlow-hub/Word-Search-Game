@@ -103,15 +103,7 @@ const wordPlacement = (arr) => {
 //               const id = j;
 //               const oldLocation = document.getElementById(id);
 //               const newlocation = document.getElementById(id + 6);
-//               newlocation.innerHTML = oldLocation.innerHTML;
-              
-              
-             
-              
-
-             
-
-            
+//               newlocation.innerHTML = oldLocation.innerHTML          
 //            }
          
              
@@ -120,11 +112,7 @@ const wordPlacement = (arr) => {
 //     }
 //       }
 
-  
 //   }
-
-
-
 
       // while(wordList.length < 4){
       //   const i = almostRandomNumber(249);
@@ -240,7 +228,7 @@ const handleClearGrid = clearButton.addEventListener("click", (e) => {
   "";
   gridContainer.innerHTML = "";
 
-  randomNumberArr.length = 0;
+  wordList.length = 0;
 })
 
 
