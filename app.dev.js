@@ -18,16 +18,17 @@ var gridContainer = document.querySelector(".game__main__grid"); //arrays
 var wordList = []; //array to use as filler for empty squarse
 
 var letterFillArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]; //array of grid locations
+
+var gridLocationArr = [0, 8, 17, 25, 29, 34, 37, 61, 73, 78, 101, 105, 110, 122, 129, 138, 149, 166, 196, 214]; //const gridLocations = [];
 //empty array to hold selected word
 
 var selectedWordArr = []; //function to grid location
 
 var gridSelector = function gridSelector() {
-  var gridLocationArr = [0, 8, 17, 25, 29, 34, 37, 61, 73, 78, 101, 105, 110, 122, 129, 138, 149, 166, 196, 214];
   var index = Math.floor(Math.random() * gridLocationArr.length);
-  var location = gridLocationArr[index];
+  var randomNumber = gridLocationArr[index];
   gridLocationArr.splice(index, 1);
-  return location;
+  return randomNumber;
 }; //function to generate random number
 
 

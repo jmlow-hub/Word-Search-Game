@@ -11,19 +11,20 @@ const wordList = [];
 //array to use as filler for empty squarse
 const letterFillArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
  //array of grid locations
- 
+ const gridLocationArr = [0,8,17,25,29,34,37,61,73,78,101,105,110,122,129,138,149,166,196,214];
+ //const gridLocations = [];
 //empty array to hold selected word
 const selectedWordArr = [];
 
 //function to grid location
 const gridSelector = () => {
-    const gridLocationArr = [0,8,17,25,29,34,37,61,73,78,101,105,110,122,129,138,149,166,196,214];
-    let index = Math.floor(Math.random() * gridLocationArr.length)
-    let location = gridLocationArr[index];
-    gridLocationArr.splice(index, 1);
-    return location;
-}
 
+    let index = Math.floor(Math.random() * gridLocationArr.length)
+    let randomNumber = gridLocationArr[index];
+    gridLocationArr.splice(index, 1);
+    return randomNumber;
+    
+  }
 //function to generate random number
 const numberGenerator = () => {
   const range = (min, max) => [...Array(max - min + 1).keys()].map(i => i + min) //creates an array
@@ -32,6 +33,7 @@ const numberGenerator = () => {
   let randomNumber = numberPickerArr[index];
   numberPickerArr.splice(index, 1);
   return randomNumber;
+  
 }
 
    
@@ -92,7 +94,7 @@ const createGrid = () => {
 const wordPlacement = (arr) => {
   for(let i = 0; i < arr.length; i++) {
     const squareIndex = gridSelector();
-      
+       
         
     let lettersArr = arr[i];
       for(let j = 0; j < lettersArr.length; j++) {
