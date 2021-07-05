@@ -10,24 +10,40 @@ const gridContainer = document.querySelector(".game__main__grid");
 const wordList = [];
 //array to use as filler for empty squarse
 const letterFillArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+ //array of grid locations
+ 
 //empty array to hold selected word
 const selectedWordArr = [];
 //random number array to use in selections
 const randomNumberArr = [];
 //function to generate random number
-const almostRandomNumber = (multiplier) => {
-  
-    do {
-      const index = Math.floor(Math.random() * multiplier);
-      randomNumberArr.push(index);
-      }
-    while (randomNumberArr.length < 4);
-     let randomNum = Math.floor(randomNumberArr.reduce((acc, num) =>{
-     return acc + num }) / 6);
-     randomNumberArr.length = 0;
-     return randomNum;
-  
+const gridSelector = () => {
+    const gridLocationArr = [0,8,17,25,29,34,37,61,73,78,101,105,110,122,129,138,149,166,196,214];
+    let index = Math.floor(Math.random() * gridLocationArr.length)
+    let gridLocation = gridLocationArr[index];
+    gridLocationArr.splice(index);
+    return gridLocation;
+
 }
+
+   
+
+  
+  
+    
+  
+  
+//   do {
+//       const index = Math.floor(Math.random() * multiplier);
+//       randomNumberArr.push(index);
+//       }
+//     while (randomNumberArr.length < 4);
+//      let randomNum = Math.floor(randomNumberArr.reduce((acc, num) =>{
+//      return acc + num }) / 6);
+//      randomNumberArr.length = 0;
+//      return randomNum;
+  
+// }
 
 
 // const shuffle = (arr) => {
@@ -67,8 +83,9 @@ const createGrid = () => {
 //randomly select whether to place words horizontally or vertically
 const wordPlacement = (arr) => {
   for(let i = 0; i < arr.length; i++) {
-    const squareIndex = almostRandomNumber(224);
-    
+    const squareIndex = gridSelector();
+    console.log(squareIndex)
+        
     let lettersArr = arr[i];
       for(let j = 0; j < lettersArr.length; j++) {
           let letter = lettersArr[j];  
@@ -156,7 +173,7 @@ const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
   .then(data => {  
 
     while(wordList.length < 4){
-      const i = almostRandomNumber(249);
+      const i = Math.floor(Math.random() * 249);
       
       if(data[i].name.length > 2 && data[i].name.length < 7) {
          wordList.push(data[i].name);

@@ -9,24 +9,30 @@ var gridContainer = document.querySelector(".game__main__grid"); //arrays
 
 var wordList = []; //array to use as filler for empty squarse
 
-var letterFillArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]; //empty array to hold selected word
+var letterFillArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]; //array of grid locations
+//empty array to hold selected word
 
 var selectedWordArr = []; //random number array to use in selections
 
 var randomNumberArr = []; //function to generate random number
 
-var almostRandomNumber = function almostRandomNumber(multiplier) {
-  do {
-    var index = Math.floor(Math.random() * multiplier);
-    randomNumberArr.push(index);
-  } while (randomNumberArr.length < 4);
-
-  var randomNum = Math.floor(randomNumberArr.reduce(function (acc, num) {
-    return acc + num;
-  }) / 6);
-  randomNumberArr.length = 0;
-  return randomNum;
-}; // const shuffle = (arr) => {
+var gridSelector = function gridSelector() {
+  var gridLocationArr = [0, 8, 17, 25, 29, 34, 37, 61, 73, 78, 101, 105, 110, 122, 129, 138, 149, 166, 196, 214];
+  var index = Math.floor(Math.random() * gridLocationArr.length);
+  var gridLocation = gridLocationArr[index];
+  gridLocationArr.splice(index);
+  return gridLocation;
+}; //   do {
+//       const index = Math.floor(Math.random() * multiplier);
+//       randomNumberArr.push(index);
+//       }
+//     while (randomNumberArr.length < 4);
+//      let randomNum = Math.floor(randomNumberArr.reduce((acc, num) =>{
+//      return acc + num }) / 6);
+//      randomNumberArr.length = 0;
+//      return randomNum;
+// }
+// const shuffle = (arr) => {
 //   let number;
 //   for(let i = arr.length - 1; i > 0; i--) {
 //     let random = Math.floor(Math.random() * i + 1);
@@ -63,7 +69,8 @@ var createGrid = function createGrid() {
 
 var wordPlacement = function wordPlacement(arr) {
   for (var i = 0; i < arr.length; i++) {
-    var squareIndex = almostRandomNumber(224);
+    var squareIndex = gridSelector();
+    console.log(squareIndex);
     var lettersArr = arr[i];
 
     for (var j = 0; j < lettersArr.length; j++) {
@@ -123,7 +130,7 @@ var handleNewGrid = newGridBtn.addEventListener("click", function (e) {
     return res.json();
   }).then(function (data) {
     while (wordList.length < 4) {
-      var i = almostRandomNumber(249);
+      var i = Math.floor(Math.random() * 249);
 
       if (data[i].name.length > 2 && data[i].name.length < 7) {
         wordList.push(data[i].name);
