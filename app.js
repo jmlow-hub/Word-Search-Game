@@ -75,8 +75,9 @@ const wordPlacement = (arr) => {
                              
           if(squareIndex % 2 === 0) {
             const square = document.getElementById(squareIndex + j);
-            square.innerHTML += letter;            
-           }  
+            square.innerHTML += letter;
+              }      
+             
           else if(squareIndex % 2 != 0) {
             const square = document.getElementById(squareIndex + (j * 15));
             square.innerHTML += letter;           
@@ -85,7 +86,63 @@ const wordPlacement = (arr) => {
         }
   }
 
+
+
+
   
+// const duplicateCheck = () => {
+//   const locationsArr = document.getElementsByClassName("game__main__grid__grid-square");
+//   const duplicates = [];
+  
+//   for(let i = 0; i < locationsArr.length; i++) {
+//       if(locationsArr[i].innerHTML.length > 1) {
+//          duplicates.push(i); 
+
+//          if(duplicates.length > 0) {
+//            for (let j = 0; j < duplicates.length; j++) {
+//               const id = j;
+//               const oldLocation = document.getElementById(id);
+//               const newlocation = document.getElementById(id + 6);
+//               newlocation.innerHTML = oldLocation.innerHTML;
+              
+              
+             
+              
+
+             
+
+            
+//            }
+         
+             
+//           }
+      
+//     }
+//       }
+
+  
+//   }
+
+
+
+
+      // while(wordList.length < 4){
+      //   const i = almostRandomNumber(249);
+        
+      //   if(data[i].name.length > 2 && data[i].name.length < 7) {
+      //      wordList.push(data[i].name);
+      // }
+    
+  
+  
+
+
+
+
+
+
+
+
 
 
 
@@ -125,7 +182,11 @@ const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
 
     wordPlacement(wordList);
 
-    fillSpace();
+    //duplicateCheck()
+
+    //fillSpace();
+
+    
   })
   .catch(err => {
     alert("We're all out of words... " + err)
@@ -144,7 +205,7 @@ const handleSquare = gridContainer.addEventListener("click", (e) => {
   if(e.target && e.target.classList == "game__main__grid__grid-square") {
     e.target.style.background = "linear-gradient(90deg, hsla(183, 62%, 45%, 1) 0%, hsla(41, 96%, 58%, 1) 100%)";
     selectedWordArr.push(content);    
-    console.log(selectedWordArr);  
+      
   }
 })
   
@@ -178,8 +239,9 @@ const handleClearGrid = clearButton.addEventListener("click", (e) => {
   wordsToFind.innerHTML = "";
   "";
   gridContainer.innerHTML = "";
-})
 
+  randomNumberArr.length = 0;
+})
 
 
 
