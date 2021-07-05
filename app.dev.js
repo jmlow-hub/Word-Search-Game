@@ -45,27 +45,7 @@ var numberGenerator = function numberGenerator() {
   var randomNumber = numberPickerArr[index];
   numberPickerArr.splice(index, 1);
   return randomNumber;
-}; //   do {
-//       const index = Math.floor(Math.random() * multiplier);
-//       randomNumberArr.push(index);
-//       }
-//     while (randomNumberArr.length < 4);
-//      let randomNum = Math.floor(randomNumberArr.reduce((acc, num) =>{
-//      return acc + num }) / 6);
-//      randomNumberArr.length = 0;
-//      return randomNum;
-// }
-// const shuffle = (arr) => {
-//   let number;
-//   for(let i = arr.length - 1; i > 0; i--) {
-//     let random = Math.floor(Math.random() * i + 1);
-//     number = arr[i];
-//     arr[i] = arr[random];
-//     arr[random] =  number;
-//   }
-//   return arr;
-// }
-//create list of words to find in relevant container
+}; //create list of words to find in relevant container
 
 
 var createWordList = function createWordList() {
@@ -93,6 +73,10 @@ var createGrid = function createGrid() {
 var wordPlacement = function wordPlacement(arr) {
   for (var i = 0; i < arr.length; i++) {
     var squareIndex = gridSelector();
+    gridLocationArr.splice(squareIndex, 1); //workaround!!!!!!
+
+    console.log(squareIndex);
+    console.log(gridLocationArr.length);
     var lettersArr = arr[i];
 
     for (var j = 0; j < lettersArr.length; j++) {
@@ -163,6 +147,7 @@ var handleCompare = wordsToFind.addEventListener("click", function (e) {
 
   if (wordList.includes(selectedWord)) {
     e.target.style.color = "grey";
+    e.target.style.fontWeight = "lighter";
   } else {
     alert("Sorry, that's not correct. Try again");
   } //clear array for next selection

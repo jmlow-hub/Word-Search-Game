@@ -18,10 +18,11 @@ const selectedWordArr = [];
 
 //function to grid location
 const gridSelector = () => {
-
+    
     let index = Math.floor(Math.random() * gridLocationArr.length)
     let randomNumber = gridLocationArr[index];
     gridLocationArr.splice(index, 1);
+
     return randomNumber;
     
   }
@@ -35,37 +36,6 @@ const numberGenerator = () => {
   return randomNumber;
   
 }
-
-   
-
-  
-  
-    
-  
-  
-//   do {
-//       const index = Math.floor(Math.random() * multiplier);
-//       randomNumberArr.push(index);
-//       }
-//     while (randomNumberArr.length < 4);
-//      let randomNum = Math.floor(randomNumberArr.reduce((acc, num) =>{
-//      return acc + num }) / 6);
-//      randomNumberArr.length = 0;
-//      return randomNum;
-  
-// }
-
-
-// const shuffle = (arr) => {
-//   let number;
-//   for(let i = arr.length - 1; i > 0; i--) {
-//     let random = Math.floor(Math.random() * i + 1);
-//     number = arr[i];
-//     arr[i] = arr[random];
-//     arr[random] =  number;
-//   }
-//   return arr;
-// }
 
 
 //create list of words to find in relevant container
@@ -94,6 +64,9 @@ const createGrid = () => {
 const wordPlacement = (arr) => {
   for(let i = 0; i < arr.length; i++) {
     const squareIndex = gridSelector();
+    gridLocationArr.splice(squareIndex, 1);  //workaround!!!!!!
+    console.log(squareIndex)
+    console.log(gridLocationArr.length)
        
         
     let lettersArr = arr[i];
@@ -182,7 +155,9 @@ const handleCompare = wordsToFind.addEventListener("click", (e) => {
   let selectedWord = selectedWordArr.join("");
   
   if(wordList.includes(selectedWord)) {
-    e.target.style.color = "grey";    
+    e.target.style.color = "grey"; 
+    e.target.style.fontWeight = "lighter"
+      
   }
   else {
     alert("Sorry, that's not correct. Try again");
@@ -201,6 +176,7 @@ const handleClearGrid = clearButton.addEventListener("click", (e) => {
   gridContainer.innerHTML = "";
 
   wordList.length = 0;
+ 
 })
 
 
