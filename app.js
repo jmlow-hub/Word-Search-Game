@@ -10,36 +10,32 @@ const gridContainer = document.querySelector(".game__main__grid");
 const wordList = [];
 //array to use as filler for empty squarse
 const letterFillArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+ //array of grid locations
+ const gridLocationArr = [0,8,17,25,29,34,37,61,73,78,101,105,110,122,129,138,149,166,196,214];
+ //const gridLocations = [];
 //empty array to hold selected word
 const selectedWordArr = [];
-//random number array to use in selections
-const randomNumberArr = [];
+
+//function to grid location
+const gridSelector = () => {
+    
+    let index = Math.floor(Math.random() * gridLocationArr.length)
+    let randomNumber = gridLocationArr[index];
+    gridLocationArr.splice(index, 1);
+
+    return randomNumber;
+    
+  }
 //function to generate random number
-const almostRandomNumber = (multiplier) => {
-  
-    do {
-      const index = Math.floor(Math.random() * multiplier);
-      randomNumberArr.push(index);
-      }
-    while (randomNumberArr.length < 4);
-     let randomNum = Math.floor(randomNumberArr.reduce((acc, num) =>{
-     return acc + num }) / 6);
-     randomNumberArr.length = 0;
-     return randomNum;
+const numberGenerator = () => {
+  const range = (min, max) => [...Array(max - min + 1).keys()].map(i => i + min) //creates an array
+  const numberPickerArr = range(0, 249);  
+  let index = Math.floor(Math.random() * numberPickerArr.length)
+  let randomNumber = numberPickerArr[index];
+  numberPickerArr.splice(index, 1);
+  return randomNumber;
   
 }
-
-
-// const shuffle = (arr) => {
-//   let number;
-//   for(let i = arr.length - 1; i > 0; i--) {
-//     let random = Math.floor(Math.random() * i + 1);
-//     number = arr[i];
-//     arr[i] = arr[random];
-//     arr[random] =  number;
-//   }
-//   return arr;
-// }
 
 
 //create list of words to find in relevant container
@@ -67,8 +63,12 @@ const createGrid = () => {
 //randomly select whether to place words horizontally or vertically
 const wordPlacement = (arr) => {
   for(let i = 0; i < arr.length; i++) {
-    const squareIndex = almostRandomNumber(224);
-    
+    const squareIndex = gridSelector();
+    gridLocationArr.splice(squareIndex, 1);  //workaround!!!!!!
+    console.log(squareIndex)
+    console.log(gridLocationArr.length)
+       
+        
     let lettersArr = arr[i];
       for(let j = 0; j < lettersArr.length; j++) {
           let letter = lettersArr[j];  
@@ -85,54 +85,6 @@ const wordPlacement = (arr) => {
         }  
         }
   }
-
-
-
-
-  
-// const duplicateCheck = () => {
-//   const locationsArr = document.getElementsByClassName("game__main__grid__grid-square");
-//   const duplicates = [];
-  
-//   for(let i = 0; i < locationsArr.length; i++) {
-//       if(locationsArr[i].innerHTML.length > 1) {
-//          duplicates.push(i); 
-
-//          if(duplicates.length > 0) {
-//            for (let j = 0; j < duplicates.length; j++) {
-//               const id = j;
-//               const oldLocation = document.getElementById(id);
-//               const newlocation = document.getElementById(id + 6);
-//               newlocation.innerHTML = oldLocation.innerHTML          
-//            }
-         
-             
-//           }
-      
-//     }
-//       }
-
-//   }
-
-      // while(wordList.length < 4){
-      //   const i = almostRandomNumber(249);
-        
-      //   if(data[i].name.length > 2 && data[i].name.length < 7) {
-      //      wordList.push(data[i].name);
-      // }
-    
-  
-  
-
-
-
-
-
-
-
-
-
-
 
 
 //fill empty spaces:
@@ -156,7 +108,7 @@ const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
   .then(data => {  
 
     while(wordList.length < 4){
-      const i = almostRandomNumber(249);
+      const i = numberGenerator();
       
       if(data[i].name.length > 2 && data[i].name.length < 7) {
          wordList.push(data[i].name);
@@ -169,8 +121,6 @@ const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
     createGrid();
 
     wordPlacement(wordList);
-
-    //duplicateCheck()
 
     fillSpace();
 
@@ -205,7 +155,9 @@ const handleCompare = wordsToFind.addEventListener("click", (e) => {
   let selectedWord = selectedWordArr.join("");
   
   if(wordList.includes(selectedWord)) {
-    e.target.style.color = "grey";    
+    e.target.style.color = "grey"; 
+    e.target.style.fontWeight = "lighter"
+      
   }
   else {
     alert("Sorry, that's not correct. Try again");
@@ -213,11 +165,6 @@ const handleCompare = wordsToFind.addEventListener("click", (e) => {
   //clear array for next selection
   selectedWordArr.length = 0;
 })
-
-
-
-
-
 
 
 //clear list and grid
@@ -229,6 +176,7 @@ const handleClearGrid = clearButton.addEventListener("click", (e) => {
   gridContainer.innerHTML = "";
 
   wordList.length = 0;
+ 
 })
 
 
