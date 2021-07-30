@@ -11,32 +11,34 @@ const wordList = [];
 //array to use as filler for empty squarse
 const letterFillArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
  //array of grid locations
- const gridLocationArr = [0,8,17,25,29,34,37,61,73,78,101,105,110,122,129,138,149,166,196,214];
+//  const gridLocationArr = [0,8,17,25,29,34,37,61,73,78,101,105,110,122,129,138,149,166,196,214];
  //const gridLocations = [];
 //empty array to hold selected word
 const selectedWordArr = [];
 
 //function to grid location
-const gridSelector = () => {
+// const gridSelector = () => {
     
-    let index = Math.floor(Math.random() * gridLocationArr.length)
-    let randomNumber = gridLocationArr[index];
-    gridLocationArr.splice(index, 1);
+//     let index = Math.floor(Math.random() * gridLocationArr.length)
+//     let randomNumber = gridLocationArr[index];
+//     gridLocationArr.splice(index, 1);
 
-    return randomNumber;
+//     return randomNumber;
     
-  }
+//   }
 //function to generate random number
-const numberGenerator = () => {
-  const range = (min, max) => [...Array(max - min + 1).keys()].map(i => i + min) //creates an array
-  const numberPickerArr = range(0, 249);  
-  let index = Math.floor(Math.random() * numberPickerArr.length)
-  let randomNumber = numberPickerArr[index];
-  numberPickerArr.splice(index, 1);
-  return randomNumber;
+// const numberGenerator = () => {
+//   const range = (min, max) => [...Array(max - min + 1).keys()].map(i => i + min) //creates an array
+//   const numberPickerArr = range(0, 249); 
+//   let index = Math.floor(Math.random() * numberPickerArr.length)
+//   let randomNumber = numberPickerArr[index];
+//   //console.log(randomNumber)
+//   numberPickerArr.splice(index, 1);
+//   //console.log(numberPickerArr.length)
+//   return randomNumber;
   
-}
-
+// }
+const numberGenerator = (min,max) => [...Array(max-min + 1).keys()].map(i => i + min) //creates an array
 
 //create list of words to find in relevant container
 const createWordList = () => {
@@ -62,27 +64,30 @@ const createGrid = () => {
 
 //randomly select whether to place words horizontally or vertically
 const wordPlacement = (arr) => {
-  for(let i = 0; i < arr.length; i++) {
-    const squareIndex = gridSelector();
-    gridLocationArr.splice(squareIndex, 1);  //workaround!!!!!!
-    console.log(squareIndex)
-    console.log(gridLocationArr.length)
+  const gridLocationArr = [0,8,17,25,29,34,37,61,73,78,101,105,110,122,129,138,149,166,196,214];
+   for(let i = 0; i < arr.length; i++) {
+    const squareIndex = Math.floor(Math.random() * gridLocationArr.length);
+    //workaround!!!!!!
+   console.log(gridLocationArr[squareIndex])
+    
        
         
     let lettersArr = arr[i];
       for(let j = 0; j < lettersArr.length; j++) {
           let letter = lettersArr[j];  
                              
-          if(squareIndex % 2 === 0) {
-            const square = document.getElementById(squareIndex + j);
+          if(gridLocationArr[squareIndex] % 2 === 0) {
+            const square = document.getElementById(gridLocationArr[squareIndex] + j);
             square.innerHTML += letter;
               }      
              
-          else if(squareIndex % 2 != 0) {
-            const square = document.getElementById(squareIndex + (j * 15));
+          else if(gridLocationArr[squareIndex] % 2 != 0) {
+            const square = document.getElementById(gridLocationArr[squareIndex] + (j * 15));
             square.innerHTML += letter;           
         }  
         }  
+        gridLocationArr.splice(squareIndex, 1);
+        console.log(gridLocationArr)
         }
   }
 
@@ -106,12 +111,15 @@ const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
     return res.json();
   })
   .then(data => {  
-
+    const numberPickerArr = numberGenerator(0, 249); 
     while(wordList.length < 4){
-      const i = numberGenerator();
+      const i = Math.floor(Math.random() * numberPickerArr.length);
+      //console.log(i)
       
       if(data[i].name.length > 2 && data[i].name.length < 7) {
          wordList.push(data[i].name);
+         numberPickerArr.splice(i, 1);
+         //console.log(numberPickerArr.length)
     }
 
 }
@@ -143,7 +151,8 @@ const handleSquare = gridContainer.addEventListener("click", (e) => {
   if(e.target && e.target.classList == "game__main__grid__grid-square") {
     e.target.style.background = "linear-gradient(90deg, hsla(183, 62%, 45%, 1) 0%, hsla(41, 96%, 58%, 1) 100%)";
     selectedWordArr.push(content);    
-      
+    
+ 
   }
 })
   
