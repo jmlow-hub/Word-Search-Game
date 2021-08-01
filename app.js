@@ -43,7 +43,7 @@ const createGrid = () => {
 //randomly select whether to place words horizontally or vertically
 const wordPlacement = (arr) => {
   //array of specific grid locations
-  const gridLocationArr = [0,8,17,25,29,34,37,61,73,78,101,105,110,122,129,138,149,166,196,214];
+  const gridLocationArr = [0,8,17,25,29,34,57, 61,73,78,101,105,110,122,129,138,149,166,196,214];
    for(let i = 0; i < arr.length; i++) {
     const squareIndex = Math.floor(Math.random() * gridLocationArr.length); //selects an index between 0 and 15
         

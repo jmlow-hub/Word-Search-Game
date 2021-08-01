@@ -55,7 +55,7 @@ var createGrid = function createGrid() {
 
 var wordPlacement = function wordPlacement(arr) {
   //array of specific grid locations
-  var gridLocationArr = [0, 8, 17, 25, 29, 34, 37, 61, 73, 78, 101, 105, 110, 122, 129, 138, 149, 166, 196, 214];
+  var gridLocationArr = [0, 8, 17, 25, 29, 34, 57, 61, 73, 78, 101, 105, 110, 122, 129, 138, 149, 166, 196, 214];
 
   for (var i = 0; i < arr.length; i++) {
     var squareIndex = Math.floor(Math.random() * gridLocationArr.length); //selects an index between 0 and 15
