@@ -200,10 +200,13 @@ main {
 footer {
   width: 100vw;
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  justify-content: space-between;
   font-family: "Share", cursive;
   font-size: 10px;
+}
+footer a:link {
+  color: black;
+  text-decoration: none;
 }
 
 * {
