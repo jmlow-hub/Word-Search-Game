@@ -55,13 +55,13 @@ main {
   color: white;
   font-weight: bold;
 }
-.game__main__list__btns {
+.game__main__btns {
   width: 40%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
-.game__main__list__btns button {
+.game__main__btns button {
   font-size: 1em;
   padding: 10px 10px;
   background-color: #52b788;
@@ -71,11 +71,11 @@ main {
   font-family: "Share", cursive;
   font-weight: bold;
 }
-.game__main__list__btns button:hover {
+.game__main__btns button:hover {
   background: #d8f3dc;
   color: #006d77;
 }
-.game__main__list__btns button:active {
+.game__main__btns button:active {
   color: black;
   background: white;
   box-shadow: 0px 0px 5px gray inset;
@@ -138,5 +138,38 @@ main {
   }
   .game__main__list button {
     margin: 20px;
+  }
+}
+.wrong {
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+.right {
+  animation: size 0.5s linear;
+}
+
+@keyframes size {
+  from {
+    font-size: 1.1em;
+  }
+  70% {
+    font-size: 1.5em;
+  }
+  to {
+    font-size: 1.1em;
   }
 }

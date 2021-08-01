@@ -9,8 +9,8 @@ main {
   align-items: center;
   justify-content: space-between;
   
- 
 }
+
 
 .game__intro {
   width: 95vw;
@@ -63,8 +63,9 @@ main {
           &:hover {
             color: white;
             font-weight: bold;
-
           }
+
+      }
 
 
       }
@@ -103,7 +104,6 @@ main {
             }
 
         }
-    }
           
     }
 
@@ -178,5 +178,47 @@ main {
     }
   }
 
+}
 
+.wrong {
+  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97); 
+  
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.right {
+  animation: size 0.5s linear; 
+  
+  
+}
+
+@keyframes size {
+  from {
+    font-size: 1.1em;
+  }
+
+  70% {
+    font-size: 1.5em;
+  }
+
+  to {
+    font-size: 1.1em;
+  }
 }

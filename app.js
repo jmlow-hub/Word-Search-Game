@@ -10,34 +10,12 @@ const gridContainer = document.querySelector(".game__main__grid");
 const wordList = [];
 //array to use as filler for empty squarse
 const letterFillArr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
- //array of grid locations
-//  const gridLocationArr = [0,8,17,25,29,34,37,61,73,78,101,105,110,122,129,138,149,166,196,214];
- //const gridLocations = [];
 //empty array to hold selected word
 const selectedWordArr = [];
+//empty array to hold ids of selected letters
+const selectedIDArr = [];
 
-//function to grid location
-// const gridSelector = () => {
-    
-//     let index = Math.floor(Math.random() * gridLocationArr.length)
-//     let randomNumber = gridLocationArr[index];
-//     gridLocationArr.splice(index, 1);
 
-//     return randomNumber;
-    
-//   }
-//function to generate random number
-// const numberGenerator = () => {
-//   const range = (min, max) => [...Array(max - min + 1).keys()].map(i => i + min) //creates an array
-//   const numberPickerArr = range(0, 249); 
-//   let index = Math.floor(Math.random() * numberPickerArr.length)
-//   let randomNumber = numberPickerArr[index];
-//   //console.log(randomNumber)
-//   numberPickerArr.splice(index, 1);
-//   //console.log(numberPickerArr.length)
-//   return randomNumber;
-  
-// }
 const numberGenerator = (min,max) => [...Array(max-min + 1).keys()].map(i => i + min) //creates an array
 
 //create list of words to find in relevant container
@@ -64,30 +42,27 @@ const createGrid = () => {
 
 //randomly select whether to place words horizontally or vertically
 const wordPlacement = (arr) => {
+  //array of specific grid locations
   const gridLocationArr = [0,8,17,25,29,34,37,61,73,78,101,105,110,122,129,138,149,166,196,214];
    for(let i = 0; i < arr.length; i++) {
-    const squareIndex = Math.floor(Math.random() * gridLocationArr.length);
-    //workaround!!!!!!
-   console.log(gridLocationArr[squareIndex])
-    
-       
+    const squareIndex = Math.floor(Math.random() * gridLocationArr.length); //selects an index between 0 and 15
         
-    let lettersArr = arr[i];
+    let lettersArr = arr[i]; //takes letters in each word in argument array and iterates over it to split into letters
       for(let j = 0; j < lettersArr.length; j++) {
           let letter = lettersArr[j];  
-                             
-          if(gridLocationArr[squareIndex] % 2 === 0) {
+            //if grid location at square index is even place the letter horizontally                 
+          if(gridLocationArr[squareIndex] % 2 === 0) { //
             const square = document.getElementById(gridLocationArr[squareIndex] + j);
             square.innerHTML += letter;
               }      
-             
-          else if(gridLocationArr[squareIndex] % 2 != 0) {
+           //if grid location is odd place letters vertically  
+          else if(gridLocationArr[squareIndex] % 2 != 0) { 
             const square = document.getElementById(gridLocationArr[squareIndex] + (j * 15));
             square.innerHTML += letter;           
         }  
         }  
-        gridLocationArr.splice(squareIndex, 1);
-        console.log(gridLocationArr)
+        gridLocationArr.splice(squareIndex, 1); //takes square index out of array to avoid duplication
+      
         }
   }
 
@@ -107,19 +82,20 @@ const fillSpace = () => {
 const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
   e.preventDefault();
 
+  
   fetch("https://restcountries.eu/rest/v2/all").then(res => {
     return res.json();
   })
   .then(data => {  
-    const numberPickerArr = numberGenerator(0, 249); 
+    const numberPickerArr = numberGenerator(0, 249); //calls function to generate array of numbers
     while(wordList.length < 4){
       const i = Math.floor(Math.random() * numberPickerArr.length);
-      //console.log(i)
-      
+       //checks the length of the word at [i] meets condition  
       if(data[i].name.length > 2 && data[i].name.length < 7) {
          wordList.push(data[i].name);
-         numberPickerArr.splice(i, 1);
-         //console.log(numberPickerArr.length)
+         
+         numberPickerArr.splice(i, 1); //deletes [i] from array
+                 
     }
 
 }
@@ -138,7 +114,7 @@ const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
     alert("We're all out of words... " + err)
   })
   
-
+  
 })
 
 
@@ -147,33 +123,55 @@ const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
 const handleSquare = gridContainer.addEventListener("click", (e) => {
   e.preventDefault();
   let content = e.target.innerHTML;
+  let id = e.target.id;
 //value is pushed to array
   if(e.target && e.target.classList == "game__main__grid__grid-square") {
-    e.target.style.background = "linear-gradient(90deg, hsla(183, 62%, 45%, 1) 0%, hsla(41, 96%, 58%, 1) 100%)";
-    selectedWordArr.push(content);    
-    
+    e.target.style.color = "#006d77";
+    selectedWordArr.push(content);
+    selectedIDArr.push(id);     
  
   }
 })
   
-  
+// const wrongWord = () => {
+//   e.target.classList.add("shake--wrong");
+//   selectedIDArr.forEach(id => {
+//   document.getElementById(id).style.color = "white";
+//   })
+//   e.target.classList.remove("shake--wrong")
+// }
+
+
+
 const handleCompare = wordsToFind.addEventListener("click", (e) => {
-  e.preventDefault();
-  
+  e.preventDefault();  
   //compare selectedword array with wordList 
   let selectedWord = selectedWordArr.join("");
-  
+ 
+  //if word is a match, sets class which calls animation and changes styles of word and individual letters  
   if(wordList.includes(selectedWord)) {
-    e.target.style.color = "grey"; 
-    e.target.style.fontWeight = "lighter"
-      
+    e.target.classList.add("right");
+    e.target.style.textDecoration = "line-through";
+    e.target.style.color = "green";
+    selectedIDArr.forEach(id => {
+    document.getElementById(id).style.opacity = "0.3";
+})     
   }
+ //if word is not a match, sets class which call animation and re-sets the styles
   else {
-    alert("Sorry, that's not correct. Try again");
-  }
+    e.target.classList.add("wrong");
+    selectedIDArr.forEach(id => {
+      document.getElementById(id).style.color = "white";
+      e.target.style.color= "black";
+        
+  })
   //clear array for next selection
   selectedWordArr.length = 0;
+  selectedIDArr.length = 0;
+}
 })
+
+
 
 
 //clear list and grid
@@ -185,7 +183,8 @@ const handleClearGrid = clearButton.addEventListener("click", (e) => {
   gridContainer.innerHTML = "";
 
   wordList.length = 0;
- 
+
+  
 })
 
 
