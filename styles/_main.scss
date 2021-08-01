@@ -9,6 +9,7 @@ main {
   align-items: center;
   justify-content: space-between;
   
+  
 }
 
 .game__intro {
@@ -22,6 +23,7 @@ main {
   margin: 10px 0;
   @include border();
   background-color: #95d5b2;
+  
 
       h3 {
         margin-left: 10px;
@@ -47,6 +49,10 @@ main {
   flex: 1;
   background-color: #95d5b2;
   @include border();
+  background-image: url(../world.jpg);
+  background-size: contain;
+ 
+  background-blend-mode: screen;
 
   &__list {
     width: 100vw;
@@ -113,14 +119,13 @@ main {
       height: 80%;
       display: grid;
       grid-template-columns: repeat(15, 1fr);
-      //grid-template-rows: repeat(autofill, 1fr);
       justify-content: center;
       gap: 3px;
       padding: 10px;
       font-size: 1.5em;
       @include border();
       font-family: $primary-font;
-      color: white;
+      color: #006d77;
       text-decoration-line: grey;
        }
 }
@@ -129,14 +134,10 @@ main {
           text-align: center;
 
           &:hover {
-            color: #006d77;
+            color: #52b788;
           }
 
-          // &:active {
-          //   background: $gradient;
-          //   color: white;
-          // }
-  }
+      }
 
 
 @media screen and (min-width: 768px) {
@@ -148,10 +149,12 @@ main {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    
 
     &__grid {
       width: 50%;
       font-size: 1.7em;
+      margin-right: 10px;
       
     }
 

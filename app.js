@@ -124,7 +124,7 @@ const handleSquare = gridContainer.addEventListener("click", (e) => {
   let id = e.target.id;
 //value is pushed to array
   if(e.target && e.target.classList == "game__main__grid__grid-square") {
-    e.target.style.color = "#006d77";
+    e.target.style.color = "#52b788";
     selectedWordArr.push(content);
     selectedIDArr.push(id);     
  
@@ -150,7 +150,7 @@ const handleCompare = wordsToFind.addEventListener("click", (e) => {
   else {
     e.target.classList.add("wrong");
     selectedIDArr.forEach(id => {
-      document.getElementById(id).style.color = "white";
+      document.getElementById(id).style.color = "#006d77";
       e.target.style.color = "black";    
   })
   //clear array for next selection

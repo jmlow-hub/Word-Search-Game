@@ -127,7 +127,7 @@ var handleSquare = gridContainer.addEventListener("click", function (e) {
   var id = e.target.id; //value is pushed to array
 
   if (e.target && e.target.classList == "game__main__grid__grid-square") {
-    e.target.style.color = "#006d77";
+    e.target.style.color = "#52b788";
     selectedWordArr.push(content);
     selectedIDArr.push(id);
   }
@@ -148,7 +148,7 @@ var handleCompare = wordsToFind.addEventListener("click", function (e) {
   else {
       e.target.classList.add("wrong");
       selectedIDArr.forEach(function (id) {
-        document.getElementById(id).style.color = "white";
+        document.getElementById(id).style.color = "#006d77";
         e.target.style.color = "black";
       }); //clear array for next selection
 
