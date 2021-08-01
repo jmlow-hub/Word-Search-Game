@@ -66,7 +66,6 @@ const wordPlacement = (arr) => {
         }
   }
 
-
 //fill empty spaces:
 const fillSpace = () => {
   const gridSpaceArr = document.getElementsByClassName("game__main__grid__grid-square");
@@ -82,7 +81,6 @@ const fillSpace = () => {
 const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
   e.preventDefault();
 
-  
   fetch("https://restcountries.eu/rest/v2/all").then(res => {
     return res.json();
   })
@@ -92,13 +90,13 @@ const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
       const i = Math.floor(Math.random() * numberPickerArr.length);
        //checks the length of the word at [i] meets condition  
       if(data[i].name.length > 2 && data[i].name.length < 7) {
-         wordList.push(data[i].name);
+         wordList.push(data[i].name.toLowerCase());
          
          numberPickerArr.splice(i, 1); //deletes [i] from array
                  
     }
 
-}
+  }
 
     createWordList();
 
@@ -113,9 +111,9 @@ const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
   .catch(err => {
     alert("We're all out of words... " + err)
   })
-  
-  
-})
+   }  
+)
+
 
 
 //select the word
@@ -133,15 +131,6 @@ const handleSquare = gridContainer.addEventListener("click", (e) => {
   }
 })
   
-// const wrongWord = () => {
-//   e.target.classList.add("shake--wrong");
-//   selectedIDArr.forEach(id => {
-//   document.getElementById(id).style.color = "white";
-//   })
-//   e.target.classList.remove("shake--wrong")
-// }
-
-
 
 const handleCompare = wordsToFind.addEventListener("click", (e) => {
   e.preventDefault();  
@@ -162,17 +151,13 @@ const handleCompare = wordsToFind.addEventListener("click", (e) => {
     e.target.classList.add("wrong");
     selectedIDArr.forEach(id => {
       document.getElementById(id).style.color = "white";
-      e.target.style.color= "black";
-        
+      e.target.style.color = "black";    
   })
   //clear array for next selection
   selectedWordArr.length = 0;
   selectedIDArr.length = 0;
 }
 })
-
-
-
 
 //clear list and grid
 const handleClearGrid = clearButton.addEventListener("click", (e) => {

@@ -106,7 +106,7 @@ var handleNewGrid = newGridBtn.addEventListener("click", function (e) {
       var i = Math.floor(Math.random() * numberPickerArr.length); //checks the length of the word at [i] meets condition  
 
       if (data[i].name.length > 2 && data[i].name.length < 7) {
-        wordList.push(data[i].name);
+        wordList.push(data[i].name.toLowerCase());
         numberPickerArr.splice(i, 1); //deletes [i] from array
       }
     }
@@ -131,14 +131,7 @@ var handleSquare = gridContainer.addEventListener("click", function (e) {
     selectedWordArr.push(content);
     selectedIDArr.push(id);
   }
-}); // const wrongWord = () => {
-//   e.target.classList.add("shake--wrong");
-//   selectedIDArr.forEach(id => {
-//   document.getElementById(id).style.color = "white";
-//   })
-//   e.target.classList.remove("shake--wrong")
-// }
-
+});
 var handleCompare = wordsToFind.addEventListener("click", function (e) {
   e.preventDefault(); //compare selectedword array with wordList 
 
