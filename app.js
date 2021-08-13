@@ -20,7 +20,7 @@ const numberGenerator = (min,max) => [...Array(max-min + 1).keys()].map(i => i +
 
 //create list of words to find in relevant container
 const createWordList = () => {
-    for(let i = 0; i < 4; i++) {
+    for(let i = 0; i < 6; i++) {
     const newListItem = document.createElement("li");
     const listItemContent = wordList[i];
     newListItem.classList.add("game__main__list__item")
@@ -86,7 +86,7 @@ const handleNewGrid = newGridBtn.addEventListener("click", (e) => {
   })
   .then(data => {  
     const numberPickerArr = numberGenerator(0, 249); //calls function to generate array of numbers
-    while(wordList.length < 4){
+    while(wordList.length < 6){
       const i = Math.floor(Math.random() * numberPickerArr.length);
        //checks the length of the word at [i] meets condition  
       if(data[i].name.length > 2 && data[i].name.length < 7) {
@@ -126,7 +126,8 @@ const handleSquare = gridContainer.addEventListener("click", (e) => {
   if(e.target && e.target.classList == "game__main__grid__grid-square") {
     e.target.style.color = "#52b788";
     selectedWordArr.push(content);
-    selectedIDArr.push(id);     
+    selectedIDArr.push(id);  
+    console.log(selectedWordArr)   
  
   }
 })
@@ -144,6 +145,9 @@ const handleCompare = wordsToFind.addEventListener("click", (e) => {
     e.target.style.color = "green";
     selectedIDArr.forEach(id => {
     document.getElementById(id).style.opacity = "0.3";
+     //clear array for next selection
+    selectedWordArr.length = 0;
+    selectedIDArr.length = 0;
 })     
   }
  //if word is not a match, sets class which call animation and re-sets the styles

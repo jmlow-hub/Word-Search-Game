@@ -32,7 +32,7 @@ var numberGenerator = function numberGenerator(min, max) {
 
 
 var createWordList = function createWordList() {
-  for (var i = 0; i < 4; i++) {
+  for (var i = 0; i < 6; i++) {
     var newListItem = document.createElement("li");
     var listItemContent = wordList[i];
     newListItem.classList.add("game__main__list__item");
@@ -102,7 +102,7 @@ var handleNewGrid = newGridBtn.addEventListener("click", function (e) {
   }).then(function (data) {
     var numberPickerArr = numberGenerator(0, 249); //calls function to generate array of numbers
 
-    while (wordList.length < 4) {
+    while (wordList.length < 6) {
       var i = Math.floor(Math.random() * numberPickerArr.length); //checks the length of the word at [i] meets condition  
 
       if (data[i].name.length > 2 && data[i].name.length < 7) {
@@ -130,6 +130,7 @@ var handleSquare = gridContainer.addEventListener("click", function (e) {
     e.target.style.color = "#52b788";
     selectedWordArr.push(content);
     selectedIDArr.push(id);
+    console.log(selectedWordArr);
   }
 });
 var handleCompare = wordsToFind.addEventListener("click", function (e) {
@@ -142,7 +143,10 @@ var handleCompare = wordsToFind.addEventListener("click", function (e) {
     e.target.style.textDecoration = "line-through";
     e.target.style.color = "green";
     selectedIDArr.forEach(function (id) {
-      document.getElementById(id).style.opacity = "0.3";
+      document.getElementById(id).style.opacity = "0.3"; //clear array for next selection
+
+      selectedWordArr.length = 0;
+      selectedIDArr.length = 0;
     });
   } //if word is not a match, sets class which call animation and re-sets the styles
   else {
