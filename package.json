@@ -1,0 +1,23 @@
+{
+  "name": "Word-Search-Game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.dev.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmlow-hub/Word-Search-Game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jmlow-hub/Word-Search-Game/issues"
+  },
+  "homepage": "https://github.com/jmlow-hub/Word-Search-Game#readme",
+  "dependencies": {
+    "jest": "^27.0.6"
+  }
+}
