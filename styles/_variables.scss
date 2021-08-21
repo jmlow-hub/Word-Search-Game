@@ -1,12 +1,14 @@
-$primary-font: 'Share', cursive;
-$second-font: 'Ubuntu', sans-serif;
-$gradient: linear-gradient(90deg, hsla(183, 62%, 45%, 1) 0%, hsla(41, 96%, 58%, 1) 100%);
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+$primary-font: 'Poppins', sans-serif;
+$second-font: 'Poppins', sans-serif;
+$primary-color: #480ca8;
+
 
 @mixin border() {
-  border: 1px solid #95d5b2;
-  
-  border-width: 2px; 
-  
+  border: 3px solid $primary-color; 
+  //border-width: 2px;   
   border-radius: 5px;
   
   

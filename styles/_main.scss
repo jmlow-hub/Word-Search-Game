@@ -3,27 +3,22 @@
 
 main {
   width: 100vw;
-  min-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  
-  
+    
 }
 
 .game__intro {
-  width: 95vw;
+  min-width: 350px;
   display: flex;
   flex-direction: column;
-  //justify-content: space-around;
-  //align-items: center;
   font-family: $primary-font;
   font-size: 0.8em;
   margin: 10px 0;
-  @include border();
-  background-color: #95d5b2;
-  
+  padding: 5px;
+  color: $primary-color;  
 
       h3 {
         margin-left: 10px;
@@ -35,64 +30,57 @@ main {
          font-family: $second-font;
          text-align: justify;
       
-         }
+       }
  }
 
 
 .game__main {
   width: 95vw;
-  //height: 85%;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-evenly;
-  flex: 1;
-  background-color: #95d5b2;
-  @include border();
-  background-image: url(../world.jpg);
-  background-size: contain;
- 
-  background-blend-mode: screen;
+  justify-content: center;
+  flex: 1; 
 
   &__list {
-    width: 100vw;
-    //height: 12%;
+    width: 350px;
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
+    align-items: center;
 
     &__btns {
-      width: 40%;
       display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
+      justify-content: center;
 
         button {        
         font-size: 1em;
-        padding: 10px 5px;
-        background-color: #52b788;
+        padding: 5px;
+        background-color: $primary-color;
+        color: white;
         @include border();
         font-family: $primary-font;
-        font-weight: bold;
+        margin: 10px;
 
           &:hover {
-            background:#d8f3dc;
-            color: #006d77;                          
+            background: white;
+            color: $primary-color;                          
           }
 
-          &:active {
-            color: black;
-            background: #006d77;
-            box-shadow: 0px 0px 5px gray inset; 
-          }
-         
       }   
   }
 
       ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+        gap: 5px;
 
         p {
-          margin-left: 0;
-          color: #006d77;
+          grid-column: 1/3;
+          color: $primary-color;
+          font-family: $primary-font;
+          font-weight: bold;
         }
      
 
@@ -101,10 +89,10 @@ main {
           font-family: $second-font;
           font-size: 1.0em;
           padding-bottom: 5px;
+          color: $primary-color;
   
             &:hover {
-              color: #006d77;
-              font-weight: bold;
+              opacity: 0.6;
             }
         }
       }
@@ -115,8 +103,7 @@ main {
     
 
     &__grid {
-      width: 90%;
-      height: 80%;
+      width: 500px;
       display: grid;
       grid-template-columns: repeat(15, 1fr);
       justify-content: center;
@@ -125,64 +112,26 @@ main {
       font-size: 1.5em;
       //@include border();
       font-family: $primary-font;
-      color: #006d77;
-      text-decoration-line: grey;
+      color: $primary-color;
+      
        }
+
+    &__grid-border {
+      @include border();
+    }
 }
 
 .game__main__grid__grid-square {
           text-align: center;
+          color: $primary-color;
 
           &:hover {
-            color: #52b788;
+            opacity: 0.6;
             cursor: pointer;
           }
 
       }
 
-
-@media screen and (min-width: 768px) {
-  .game__intro {
-    margin-top: 30px;
-
-  }
-  .game__main {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    
-
-    &__grid {
-      width: 50%;
-      font-size: 1.7em;
-      margin-right: 10px;
-      
-    }
-
-    &__list {
-      width: 50%;
-      height: 100%;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-        ul {
-          height: 30%;
-        }
-
-        &__btns {
-          flex-direction: row;
-        }
-
-        button {
-          margin: 20px;
-          
-        }
-     
-    }
-  }
-
-}
 
 .wrong {
   animation: shake 0.5s cubic-bezier(.36,.07,.19,.97); 
@@ -207,22 +156,48 @@ main {
   }
 }
 
-.right {
-  animation: size 0.5s linear; 
+
+// .right {
+//   animation: size 0.5s linear; 
   
+  
+// }
+
+// @keyframes size {
+//   from {
+//     font-size: 1.1em;
+//   }
+
+//   70% {
+//     font-size: 1.5em;
+//   }
+
+//   to {
+//     font-size: 1.1em;
+//   }
+// }
+
+@media screen and(max-width: 510px) {
+  .game__main__list {
+    p {
+      font-size: 0.8em;
+    }
+
+    li {
+      font-size: 0.8em;
+    }
+
+  }
+  .game__main__grid {
+    width: 300px;
+    font-size: 1em;
+  }
   
 }
 
-@keyframes size {
-  from {
-    font-size: 1.1em;
+@media screen and (min-width: 2000px) {
+  .game__main {
+    justify-content: space-around;
   }
-
-  70% {
-    font-size: 1.5em;
-  }
-
-  to {
-    font-size: 1.1em;
-  }
+   
 }

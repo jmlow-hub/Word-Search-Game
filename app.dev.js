@@ -12,7 +12,9 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 var newGridBtn = document.querySelector(".game__intro__new-grid-btn");
 var clearButton = document.querySelector(".game__end__clear-btn");
 var wordsToFind = document.querySelector("ul");
-var gridContainer = document.querySelector(".game__main__grid"); //arrays
+var gridContainer = document.querySelector(".game__main__grid");
+var listTitle = document.querySelector(".game__main__list-title");
+var correctSound = new Audio("335908__littlerainyseasons__correct.mp3"); //arrays
 //array to hold basic word list
 
 var wordList = []; //array to use as filler for empty squarse
@@ -39,6 +41,8 @@ var createWordList = function createWordList() {
     newListItem.innerHTML = listItemContent;
     wordsToFind.appendChild(newListItem);
   }
+
+  listTitle.innerHTML += "Can you find:";
 }; //create 10 x 10 grid in relevant container - with class and id
 
 
@@ -46,8 +50,8 @@ var createGrid = function createGrid() {
   for (var i = 0; i < 225; i++) {
     var gridSquares = document.createElement("div");
     gridSquares.setAttribute("id", i);
-    gridSquares.classList.add("game__main__grid__grid-square"); //gridSquares.innerHTML = "M";
-
+    gridSquares.classList.add("game__main__grid__grid-square");
+    gridContainer.classList.add("game__main__grid-border");
     gridContainer.appendChild(gridSquares);
   }
 }; //randomly select whether to place words horizontally or vertically
@@ -73,7 +77,7 @@ var wordPlacement = function wordPlacement(arr) {
       else if (gridLocationArr[squareIndex] % 2 != 0) {
           var _square = document.getElementById(gridLocationArr[squareIndex] + j * 15);
 
-          _square.innerHTML += letter;
+          _square.innerHTML = letter;
         }
     }
 
@@ -143,7 +147,8 @@ var handleCompare = wordsToFind.addEventListener("click", function (e) {
     e.target.style.textDecoration = "line-through";
     e.target.style.color = "green";
     selectedIDArr.forEach(function (id) {
-      document.getElementById(id).style.opacity = "0.3"; //clear array for next selection
+      document.getElementById(id).style.opacity = "0.3";
+      correctSound.play(); //clear array for next selection
 
       selectedWordArr.length = 0;
       selectedIDArr.length = 0;
@@ -166,5 +171,7 @@ var handleClearGrid = clearButton.addEventListener("click", function (e) {
   wordsToFind.innerHTML = "";
   "";
   gridContainer.innerHTML = "";
+  listTitle.innerHTML = "";
+  gridContainer.classList.remove("game__main__grid-border");
   wordList.length = 0;
 });

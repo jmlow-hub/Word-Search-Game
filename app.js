@@ -3,6 +3,8 @@ const newGridBtn = document.querySelector(".game__intro__new-grid-btn");
 const clearButton = document.querySelector(".game__end__clear-btn");
 const wordsToFind = document.querySelector("ul");
 const gridContainer = document.querySelector(".game__main__grid");
+const listTitle = document.querySelector(".game__main__list-title");
+const correctSound = new Audio("335908__littlerainyseasons__correct.mp3");
 
 
 //arrays
@@ -25,8 +27,11 @@ const createWordList = () => {
     const listItemContent = wordList[i];
     newListItem.classList.add("game__main__list__item")
     newListItem.innerHTML = listItemContent;
-    wordsToFind.appendChild(newListItem);
+    wordsToFind.appendChild(newListItem);    
    }
+
+   listTitle.innerHTML += "Can you find:"; 
+
 }
 //create 10 x 10 grid in relevant container - with class and id
 const createGrid = () => {
@@ -34,9 +39,10 @@ const createGrid = () => {
     const gridSquares = document.createElement("div");
     gridSquares.setAttribute("id", i);
     gridSquares.classList.add("game__main__grid__grid-square");
-    //gridSquares.innerHTML = "M";
+    gridContainer.classList.add("game__main__grid-border");
     gridContainer.appendChild(gridSquares);
    }
+   
   }
 
 
@@ -58,7 +64,7 @@ const wordPlacement = (arr) => {
            //if grid location is odd place letters vertically  
           else if(gridLocationArr[squareIndex] % 2 != 0) { 
             const square = document.getElementById(gridLocationArr[squareIndex] + (j * 15));
-            square.innerHTML += letter;           
+            square.innerHTML = letter;           
         }  
         }  
         gridLocationArr.splice(squareIndex, 1); //takes square index out of array to avoid duplication
@@ -145,6 +151,7 @@ const handleCompare = wordsToFind.addEventListener("click", (e) => {
     e.target.style.color = "green";
     selectedIDArr.forEach(id => {
     document.getElementById(id).style.opacity = "0.3";
+    correctSound.play();
      //clear array for next selection
     selectedWordArr.length = 0;
     selectedIDArr.length = 0;
@@ -170,6 +177,9 @@ const handleClearGrid = clearButton.addEventListener("click", (e) => {
   wordsToFind.innerHTML = "";
   "";
   gridContainer.innerHTML = "";
+  listTitle.innerHTML = "";
+
+  gridContainer.classList.remove("game__main__grid-border");
 
   wordList.length = 0;
 

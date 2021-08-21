@@ -1,27 +1,25 @@
-@import url("https://fonts.googleapis.com/css2?family=Share&family=Ubuntu&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 nav {
   width: 100vw;
   height: 5vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Share", cursive;
+  font-family: "Poppins", sans-serif;
   margin-top: 10px;
 }
 nav h1 {
-  width: 80%;
   padding-top: 5px;
   padding-bottom: 5px;
   text-align: center;
-  background-color: white;
-  border: 1px solid #95d5b2;
-  border-width: 2px;
-  border-radius: 5px;
+  color: #480ca8;
 }
 
 main {
   width: 100vw;
-  min-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,139 +27,104 @@ main {
 }
 
 .game__intro {
-  width: 95vw;
+  min-width: 350px;
   display: flex;
   flex-direction: column;
-  font-family: "Share", cursive;
+  font-family: "Poppins", sans-serif;
   font-size: 0.8em;
   margin: 10px 0;
-  border: 1px solid #95d5b2;
-  border-width: 2px;
-  border-radius: 5px;
-  background-color: #95d5b2;
+  padding: 5px;
+  color: #480ca8;
 }
 .game__intro h3 {
   margin-left: 10px;
 }
 .game__intro__instructions {
   margin: 3px 10px;
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Poppins", sans-serif;
   text-align: justify;
 }
 
 .game__main {
   width: 95vw;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   flex: 1;
-  background-color: #95d5b2;
-  border: 1px solid #95d5b2;
-  border-width: 2px;
-  border-radius: 5px;
-  background-image: url(../world.jpg);
-  background-size: contain;
-  background-blend-mode: screen;
 }
 .game__main__list {
-  width: 100vw;
-  display: flex;
-  justify-content: space-evenly;
-}
-.game__main__list__btns {
-  width: 40%;
+  width: 350px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  align-items: center;
+}
+.game__main__list__btns {
+  display: flex;
+  justify-content: center;
 }
 .game__main__list__btns button {
   font-size: 1em;
-  padding: 10px 5px;
-  background-color: #52b788;
-  border: 1px solid #95d5b2;
-  border-width: 2px;
+  padding: 5px;
+  background-color: #480ca8;
+  color: white;
+  border: 3px solid #480ca8;
   border-radius: 5px;
-  font-family: "Share", cursive;
-  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+  margin: 10px;
 }
 .game__main__list__btns button:hover {
-  background: #d8f3dc;
-  color: #006d77;
+  background: white;
+  color: #480ca8;
 }
-.game__main__list__btns button:active {
-  color: black;
-  background: #006d77;
-  box-shadow: 0px 0px 5px gray inset;
+.game__main__list ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  gap: 5px;
 }
 .game__main__list ul p {
-  margin-left: 0;
-  color: #006d77;
+  grid-column: 1/3;
+  color: #480ca8;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
 }
 .game__main__list ul li {
   list-style-type: none;
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1em;
   padding-bottom: 5px;
+  color: #480ca8;
 }
 .game__main__list ul li:hover {
-  color: #006d77;
-  font-weight: bold;
+  opacity: 0.6;
 }
 .game__main__grid {
-  width: 90%;
-  height: 80%;
+  width: 500px;
   display: grid;
   grid-template-columns: repeat(15, 1fr);
   justify-content: center;
   gap: 3px;
   padding: 10px;
   font-size: 1.5em;
-  font-family: "Share", cursive;
-  color: #006d77;
-  text-decoration-line: grey;
+  font-family: "Poppins", sans-serif;
+  color: #480ca8;
+}
+.game__main__grid-border {
+  border: 3px solid #480ca8;
+  border-radius: 5px;
 }
 
 .game__main__grid__grid-square {
   text-align: center;
+  color: #480ca8;
 }
 .game__main__grid__grid-square:hover {
-  color: #52b788;
+  opacity: 0.6;
   cursor: pointer;
 }
 
-@media screen and (min-width: 768px) {
-  .game__intro {
-    margin-top: 30px;
-  }
-
-  .game__main {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .game__main__grid {
-    width: 50%;
-    font-size: 1.7em;
-    margin-right: 10px;
-  }
-  .game__main__list {
-    width: 50%;
-    height: 100%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  .game__main__list ul {
-    height: 30%;
-  }
-  .game__main__list__btns {
-    flex-direction: row;
-  }
-  .game__main__list button {
-    margin: 20px;
-  }
-}
 .wrong {
   animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97);
 }
@@ -180,26 +143,29 @@ main {
     transform: translate3d(4px, 0, 0);
   }
 }
-.right {
-  animation: size 0.5s linear;
-}
+@media screen and (max-width: 510px) {
+  .game__main__list p {
+    font-size: 0.8em;
+  }
+  .game__main__list li {
+    font-size: 0.8em;
+  }
 
-@keyframes size {
-  from {
-    font-size: 1.1em;
+  .game__main__grid {
+    width: 300px;
+    font-size: 1em;
   }
-  70% {
-    font-size: 1.5em;
-  }
-  to {
-    font-size: 1.1em;
+}
+@media screen and (min-width: 2000px) {
+  .game__main {
+    justify-content: space-around;
   }
 }
 footer {
   width: 100vw;
   display: flex;
   justify-content: space-between;
-  font-family: "Share", cursive;
+  font-family: "Poppins", sans-serif;
   font-size: 10px;
 }
 footer a:link {
@@ -211,8 +177,4 @@ footer a:link {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-}
-
-body {
-  background-color: #d8f3dc;
 }
